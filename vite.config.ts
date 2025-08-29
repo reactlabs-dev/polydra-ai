@@ -23,6 +23,9 @@ export default defineConfig({
       }
     }
   },
+  optimizeDeps: {
+    include: ['primeicons', 'primereact', 'primeflex']
+  },
   server: {
     port: 3000,
     host: 'localhost',
@@ -38,15 +41,6 @@ export default defineConfig({
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,
-    },
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'prime-vendor': ['primereact', 'primeicons', 'primeflex'],
-          'three-vendor': ['three']
-        }
-      }
     },
     chunkSizeWarningLimit: 1000
   },
