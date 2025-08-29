@@ -76,7 +76,7 @@ ${assessmentResults.map(result => `
 
   return (
     <div className="composite-score">
-      <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', alignItems: 'center', marginBottom: '12px' }}>
+      <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', alignItems: 'center', marginBottom: '20px' }}>
         <Button 
           icon="pi pi-compass" 
           size="small" 
@@ -90,11 +90,15 @@ ${assessmentResults.map(result => `
           size="small"
           rounded
           label="Quick Report"
-          outlined
+          outlined={!isAssessmentComplete}
+          severity={isAssessmentComplete ? "success" : "secondary"}
           disabled={!isAssessmentComplete}
           onClick={generateQuickReport}
           tooltip={isAssessmentComplete ? "Generate printable summary" : "Complete the Guided Assessment first"}
-          style={{ opacity: isAssessmentComplete ? 1 : 0.6 }}
+          style={{ 
+            opacity: isAssessmentComplete ? 1 : 0.7,
+            borderWidth: isAssessmentComplete ? '2px' : '1px'
+          }}
         />
       </div>
       <h2>Composite Quality Score: {score.toFixed(2)}</h2>

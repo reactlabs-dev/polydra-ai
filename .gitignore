@@ -43,3 +43,4 @@ pids
 
 # Vite
 .vite/
+.vercel

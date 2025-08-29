@@ -758,19 +758,20 @@ Based on your assessment results, focus on areas with lower scores to improve yo
             position: 'sticky', 
             bottom: 0, 
             background: 'white', 
-            padding: '16px 0', 
-            borderTop: '1px solid #e5e7eb'
+            padding: '24px 0', 
+            borderTop: '1px solid #e5e7eb',
+            marginTop: '24px'
           }}>
             <div style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              marginBottom: isAssessmentComplete ? '12px' : '0'
+              marginBottom: isAssessmentComplete ? '24px' : '0'
             }}>
-              <div style={{ color: '#6b7280', fontSize: '14px' }}>
+              <div style={{ color: '#6b7280', fontSize: '16px', fontWeight: '500' }}>
                 Calculated Score: <strong>{calculateSectionScore().toFixed(2)} / 25</strong>
               </div>
-              <div style={{ display: 'flex', gap: '12px' }}>
+              <div style={{ display: 'flex', gap: '16px' }}>
                 {tab > 0 && (
                   <Button 
                     label="Previous" 
@@ -792,23 +793,23 @@ Based on your assessment results, focus on areas with lower scores to improve yo
             {isAssessmentComplete && (
               <div style={{
                 borderTop: '1px solid #e5e7eb',
-                paddingTop: '12px',
+                paddingTop: '20px',
                 background: '#f8fafc',
-                margin: '-16px',
-                padding: '16px',
+                margin: '-24px',
+                padding: '24px',
                 borderRadius: '0 0 6px 6px'
               }}>
                 <div style={{ 
                   display: 'flex', 
                   justifyContent: 'space-between', 
                   alignItems: 'center',
-                  marginBottom: '8px'
+                  marginBottom: '16px'
                 }}>
                   <div>
-                    <div style={{ color: '#059669', fontWeight: '600', fontSize: '16px' }}>
+                    <div style={{ color: '#059669', fontWeight: '600', fontSize: '18px' }}>
                       ✅ Assessment Complete!
                     </div>
-                    <div style={{ color: '#6b7280', fontSize: '14px' }}>
+                    <div style={{ color: '#6b7280', fontSize: '16px', fontWeight: '500' }}>
                       Total Score: {assessmentResults.reduce((sum, result) => sum + result.score, 0).toFixed(1)} / 150
                     </div>
                   </div>

@@ -23,9 +23,6 @@ export default defineConfig({
       }
     }
   },
-  optimizeDeps: {
-    include: ['primeicons', 'primereact', 'primeflex']
-  },
   server: {
     port: 3000,
     host: 'localhost',
