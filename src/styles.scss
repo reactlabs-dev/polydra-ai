@@ -13,3 +13,9 @@ body {
     font-size: large;
     line-height: 150%;
 }
+
+/* Fix PrimeReact Dialog borders - remove side borders only */
+.p-dialog .p-dialog-content {
+    border-left: none !important;
+    border-right: none !important;
+}

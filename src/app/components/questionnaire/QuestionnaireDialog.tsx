@@ -668,7 +668,7 @@ Based on your assessment results, focus on areas with lower scores to improve yo
         </div>
 
         {/* Main Content */}
-        <div style={{ flex: 1, padding: '0 24px', overflowY: 'auto' }}>
+        <div style={{ flex: 1, padding: '0 24px 0 24px', overflowY: 'auto', paddingRight: '32px' }}>
           <div style={{ marginBottom: '20px' }}>
             <h3 style={{ margin: '0 0 8px 0', color: '#1f2937' }}>{SECTIONS[tab]}</h3>
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px' }}>
@@ -754,19 +754,26 @@ Based on your assessment results, focus on areas with lower scores to improve yo
           </div>
 
           {/* Calculate Score Button and Report Generation */}
-          <div style={{ 
-            position: 'sticky', 
-            bottom: 0, 
+          <div style={{
+            position: 'sticky',
+            bottom: 0,
             background: 'white', 
-            padding: '24px 0', 
-            borderTop: '1px solid #e5e7eb',
+            padding: '24px 16px', 
             marginTop: '24px'
           }}>
             <div style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              marginBottom: isAssessmentComplete ? '24px' : '0'
+              paddingBottom: '24px',
+              marginBottom: isAssessmentComplete ? '32px' : '0',
+              marginLeft: '-24px',
+              marginRight: '-24px',
+              paddingLeft: '24px',
+              paddingRight: '24px',
+              backgroundColor: 'white',
+              position: 'relative',
+              zIndex: 1
             }}>
               <div style={{ color: '#6b7280', fontSize: '16px', fontWeight: '500' }}>
                 Calculated Score: <strong>{calculateSectionScore().toFixed(2)} / 25</strong>
@@ -792,11 +799,11 @@ Based on your assessment results, focus on areas with lower scores to improve yo
             {/* Report Generation Section - Only show when assessment is complete */}
             {isAssessmentComplete && (
               <div style={{
-                borderTop: '1px solid #e5e7eb',
-                paddingTop: '20px',
+                borderTop: '2px solid #e5e7eb',
+                paddingTop: '24px',
                 background: '#f8fafc',
-                margin: '-24px',
-                padding: '24px',
+                margin: '-24px -24px 0 -24px',
+                padding: '32px 24px 24px 24px',
                 borderRadius: '0 0 6px 6px'
               }}>
                 <div style={{ 
