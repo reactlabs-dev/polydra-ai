@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 import { RadioButton } from 'primereact/radiobutton';
 import { ProgressBar } from 'primereact/progressbar';
 import { Card } from 'primereact/card';
 import { Badge } from 'primereact/badge';
+import { Divider } from 'primereact/divider';
+import { Tooltip } from 'primereact/tooltip';
+
+// Assessment result interface for comprehensive tracking
+interface AssessmentResult {
+  sectionName: string;
+  score: number;
+  maxScore: number;
+  answers: { questionId: string; questionText: string; selectedAnswer: string; pointsEarned: number; maxPoints: number }[];
+  completedAt: Date;
+}
 
 const SECTIONS = [
   'Governance & Accountability',
@@ -427,12 +438,16 @@ export interface QuestionnaireDialogProps {
   open: boolean;
   onClose: () => void;
   onScoreUpdate?: (sectionIndex: number, score: number) => void;
+  onAssessmentComplete?: (results: AssessmentResult[]) => void;
 }
 
-const QuestionnaireDialog: React.FC<QuestionnaireDialogProps> = ({ open, onClose, onScoreUpdate }) => {
+const QuestionnaireDialog: React.FC<QuestionnaireDialogProps> = ({ open, onClose, onScoreUpdate, onAssessmentComplete }) => {
   const [tab, setTab] = useState(0);
   const [answers, setAnswers] = useState<{[key: string]: number}>({});
+  const [selectedAnswerTexts, setSelectedAnswerTexts] = useState<{[key: string]: string}>({});
   const [sectionScores, setSectionScores] = useState<number[]>(Array(6).fill(0));
+  const [assessmentResults, setAssessmentResults] = useState<AssessmentResult[]>([]);
+  const [isAssessmentComplete, setIsAssessmentComplete] = useState(false);
 
   const currentQuestions = QUESTION_SETS[SECTIONS[tab]] || [];
   const maxPossibleScore = currentQuestions.reduce((sum, q) => sum + q.points, 0);
@@ -441,8 +456,9 @@ const QuestionnaireDialog: React.FC<QuestionnaireDialogProps> = ({ open, onClose
     return sum + (answer !== undefined ? answer : 0);
   }, 0);
 
-  const handleAnswerChange = (questionId: string, score: number) => {
+  const handleAnswerChange = (questionId: string, score: number, answerText: string) => {
     setAnswers(prev => ({ ...prev, [questionId]: score }));
+    setSelectedAnswerTexts(prev => ({ ...prev, [questionId]: answerText }));
   };
 
   const calculateSectionScore = () => {
@@ -457,13 +473,39 @@ const QuestionnaireDialog: React.FC<QuestionnaireDialogProps> = ({ open, onClose
     newScores[tab] = scaledScore;
     setSectionScores(newScores);
     
+    // Create detailed assessment result for this section
+    const sectionResult: AssessmentResult = {
+      sectionName: SECTIONS[tab],
+      score: scaledScore,
+      maxScore: 25,
+      answers: currentQuestions.map(q => ({
+        questionId: q.id,
+        questionText: q.text,
+        selectedAnswer: selectedAnswerTexts[q.id] || 'Not answered',
+        pointsEarned: answers[q.id] || 0,
+        maxPoints: q.points
+      })),
+      completedAt: new Date()
+    };
+    
+    // Update assessment results
+    const updatedResults = [...assessmentResults];
+    updatedResults[tab] = sectionResult;
+    setAssessmentResults(updatedResults);
+    
     // Update the parent component's score
     if (onScoreUpdate) {
       onScoreUpdate(tab, scaledScore);
     }
     
-    // Show success message or move to next tab
-    if (tab < SECTIONS.length - 1) {
+    // Check if this is the last section
+    if (tab === SECTIONS.length - 1) {
+      setIsAssessmentComplete(true);
+      if (onAssessmentComplete) {
+        onAssessmentComplete(updatedResults);
+      }
+    } else {
+      // Move to next tab
       setTab(tab + 1);
     }
   };
@@ -488,9 +530,100 @@ const QuestionnaireDialog: React.FC<QuestionnaireDialogProps> = ({ open, onClose
     }
   };
 
+  const generateReport = () => {
+    const totalScore = assessmentResults.reduce((sum, result) => sum + result.score, 0);
+    const maxTotalScore = assessmentResults.length * 25;
+    const overallPercentage = (totalScore / maxTotalScore) * 100;
+    
+    let maturityLevel = 'Developing';
+    if (overallPercentage >= 80) maturityLevel = 'Expert';
+    else if (overallPercentage >= 65) maturityLevel = 'Advanced';
+    else if (overallPercentage >= 45) maturityLevel = 'Intermediate';
+    else if (overallPercentage >= 25) maturityLevel = 'Basic';
+    
+    const reportContent = `
+# PolydraIQ™ AI Governance Assessment Report
+
+Generated: ${new Date().toLocaleDateString('en-US', { 
+  year: 'numeric', 
+  month: 'long', 
+  day: 'numeric', 
+  hour: '2-digit', 
+  minute: '2-digit'
+})}
+
+## Executive Summary
+
+**Overall Score:** ${totalScore.toFixed(1)} / ${maxTotalScore} (${overallPercentage.toFixed(1)}%)
+**Maturity Level:** ${maturityLevel}
+
+## Section Breakdown
+
+${assessmentResults.map(result => `
+### ${result.sectionName}
+**Score:** ${result.score.toFixed(1)} / 25 (${((result.score / 25) * 100).toFixed(1)}%)
+
+${result.answers.map(answer => `
+**Q:** ${answer.questionText}
+**A:** ${answer.selectedAnswer} (${answer.pointsEarned}/${answer.maxPoints} pts)
+`).join('')}
+`).join('')}
+
+## Recommendations
+
+Based on your assessment results, focus on areas with lower scores to improve your overall AI governance maturity. Consider engaging with AI governance experts for comprehensive improvement strategies.
+
+---
+*This report was generated using PolydraIQ™ Assessment Platform*
+*For professional AI governance consulting: https://www.inference-stack.com/*
+    `;
+    
+    return reportContent;
+  };
+  
+  const downloadReport = () => {
+    const reportContent = generateReport();
+    const blob = new Blob([reportContent], { type: 'text/markdown' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `polydraiq-assessment-${new Date().toISOString().split('T')[0]}.md`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+  
+  const printReport = () => {
+    const reportContent = generateReport();
+    const printWindow = window.open('', '_blank');
+    if (printWindow) {
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>PolydraIQ Assessment Report</title>
+            <style>
+              body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
+              h1 { color: #0ea5e9; border-bottom: 2px solid #0ea5e9; padding-bottom: 10px; }
+              h2 { color: #1f2937; margin-top: 30px; }
+              h3 { color: #374151; margin-top: 25px; }
+              strong { color: #1f2937; }
+              @media print { body { margin: 0; padding: 15px; font-size: 12px; } }
+            </style>
+          </head>
+          <body>
+            <pre style="white-space: pre-wrap; font-family: inherit;">${reportContent.replace(/\*/g, '').replace(/#/g, '')}</pre>
+          </body>
+        </html>
+      `);
+      printWindow.document.close();
+      printWindow.print();
+    }
+  };
+
   return (
     <Dialog 
-      header="Polydra™ Guided Assessment" 
+      header="PolydraIQ™ Guided Assessment" 
       visible={open} 
       style={{ width: '90vw', maxWidth: '1200px', height: '85vh' }} 
       onHide={onClose} 
@@ -594,11 +727,14 @@ const QuestionnaireDialog: React.FC<QuestionnaireDialogProps> = ({ open, onClose
                             cursor: 'pointer',
                             transition: 'all 0.2s'
                           }}
-                          onClick={() => handleAnswerChange(question.id, option.score)}
+                          onClick={() => handleAnswerChange(question.id, option.score, option.text)}
                         >
                           <RadioButton
                             value={option.score}
-                            onChange={(e) => handleAnswerChange(question.id, e.value)}
+                            onChange={(e) => {
+                              const selectedOption = question.options.find(opt => opt.score === e.value);
+                              handleAnswerChange(question.id, e.value, selectedOption?.text || '');
+                            }}
                             checked={answers[question.id] === option.score}
                             style={{ marginRight: '8px' }}
                           />
@@ -617,36 +753,86 @@ const QuestionnaireDialog: React.FC<QuestionnaireDialogProps> = ({ open, onClose
             ))}
           </div>
 
-          {/* Calculate Score Button */}
+          {/* Calculate Score Button and Report Generation */}
           <div style={{ 
             position: 'sticky', 
             bottom: 0, 
             background: 'white', 
             padding: '16px 0', 
-            borderTop: '1px solid #e5e7eb',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center'
+            borderTop: '1px solid #e5e7eb'
           }}>
-            <div style={{ color: '#6b7280', fontSize: '14px' }}>
-              Calculated Score: <strong>{calculateSectionScore().toFixed(2)} / 25</strong>
-            </div>
-            <div style={{ display: 'flex', gap: '12px' }}>
-              {tab > 0 && (
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: isAssessmentComplete ? '12px' : '0'
+            }}>
+              <div style={{ color: '#6b7280', fontSize: '14px' }}>
+                Calculated Score: <strong>{calculateSectionScore().toFixed(2)} / 25</strong>
+              </div>
+              <div style={{ display: 'flex', gap: '12px' }}>
+                {tab > 0 && (
+                  <Button 
+                    label="Previous" 
+                    icon="pi pi-arrow-left" 
+                    outlined
+                    onClick={() => setTab(tab - 1)}
+                  />
+                )}
                 <Button 
-                  label="Previous" 
-                  icon="pi pi-arrow-left" 
-                  outlined
-                  onClick={() => setTab(tab - 1)}
+                  label={tab === SECTIONS.length - 1 ? "Complete Assessment" : "Calculate & Next"} 
+                  icon="pi pi-check"
+                  onClick={handleCalculateScore}
+                  disabled={currentQuestions.some(q => answers[q.id] === undefined)}
                 />
-              )}
-              <Button 
-                label={tab === SECTIONS.length - 1 ? "Complete Assessment" : "Calculate & Next"} 
-                icon="pi pi-check"
-                onClick={handleCalculateScore}
-                disabled={currentQuestions.some(q => answers[q.id] === undefined)}
-              />
+              </div>
             </div>
+            
+            {/* Report Generation Section - Only show when assessment is complete */}
+            {isAssessmentComplete && (
+              <div style={{
+                borderTop: '1px solid #e5e7eb',
+                paddingTop: '12px',
+                background: '#f8fafc',
+                margin: '-16px',
+                padding: '16px',
+                borderRadius: '0 0 6px 6px'
+              }}>
+                <div style={{ 
+                  display: 'flex', 
+                  justifyContent: 'space-between', 
+                  alignItems: 'center',
+                  marginBottom: '8px'
+                }}>
+                  <div>
+                    <div style={{ color: '#059669', fontWeight: '600', fontSize: '16px' }}>
+                      ✅ Assessment Complete!
+                    </div>
+                    <div style={{ color: '#6b7280', fontSize: '14px' }}>
+                      Total Score: {assessmentResults.reduce((sum, result) => sum + result.score, 0).toFixed(1)} / 150
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <Button 
+                      label="Download Report" 
+                      icon="pi pi-download" 
+                      onClick={downloadReport}
+                      className="p-button-success"
+                      size="small"
+                      tooltip="Download detailed markdown report"
+                    />
+                    <Button 
+                      label="Print Report" 
+                      icon="pi pi-print" 
+                      onClick={printReport}
+                      outlined
+                      size="small"
+                      tooltip="Print assessment results"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
