@@ -1,0 +1,68 @@
+/*
+ * Replace this with your own classes
+ *
+ * e.g.
+ * .container {
+ * }
+*/
+
+.logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    margin-top: 20px;
+    margin-left: 100px;
+    h1 {
+        font-size: 40px;
+        font-weight: 600;
+        color: #FFFFFF;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+
+    p {
+        text-align: center;
+        padding-left: 90px;
+        padding-right: 90px;
+    }
+}
+
+.jumbotron {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    padding-bottom: 40px;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    background-color: #1F271B;
+    position: absolute;
+    top: 0;
+    border-bottom: solid 10px #987D56;
+
+    .container {
+        margin-top: 80px;
+        max-width: 1200px;
+        h2 {
+            margin-bottom: 0;
+        }
+    }
+
+    .desc {
+        font-size: medium;
+        margin-bottom: 20px;
+    }
+
+    h1, h2, p {
+        color: #F4F2EC;
+    }
+}
+
+

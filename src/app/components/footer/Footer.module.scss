@@ -1,0 +1,23 @@
+/*
+ * Replace this with your own classes
+ *
+ * e.g.
+ * .container {
+ * }
+*/
+
+.footer {
+    display: flex;
+    width: 100vw;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    z-index: 2;
+    font-size: small;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #999;
+}

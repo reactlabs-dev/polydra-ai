@@ -1,0 +1,25 @@
+/*
+ * Replace this with your own classes
+ *
+ * e.g.
+ * .container {
+ * }
+*/
+
+.mainMenu {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    align-content: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    margin-top: 20px;
+    margin-right: 60px;
+
+    button {
+        margin-right: 8px;
+    }
+}

@@ -1,0 +1,75 @@
+{
+  "name": "polydra-ai",
+  "version": "1.0.0",
+  "description": "Polydra.ai - AIDAQInsights™ Assessment Platform - Multidimensional AI assessment and visualization",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext ts,tsx --fix",
+    "type-check": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "primereact": "^10.9.7",
+    "primeicons": "^6.0.1",
+    "primeflex": "^3.3.1",
+    "three": "^0.177.0",
+    "react-router-dom": "^6.11.2",
+    "axios": "^1.6.7"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.33",
+    "@types/react-dom": "^18.2.14",
+    "@types/three": "^0.177.0",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
+    "@vitejs/plugin-react": "^4.2.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/jest-dom": "^6.1.0",
+    "eslint": "^8.48.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "jest": "^29.4.1",
+    "jest-environment-jsdom": "^29.4.1",
+    "sass": "^1.55.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0"
+  },
+  "keywords": [
+    "ai-assessment",
+    "ai-governance",
+    "artificial-intelligence",
+    "compliance",
+    "enterprise",
+    "assessment-platform",
+    "data-science",
+    "visualization"
+  ],
+  "author": {
+    "name": "Matt Vegas",
+    "email": "matt.vegas@inference-stack.com",
+    "url": "https://www.inference-stack.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reactlabs-dev/polydra-ai.git"
+  },
+  "homepage": "https://github.com/reactlabs-dev/polydra-ai#readme",
+  "bugs": {
+    "url": "https://github.com/reactlabs-dev/polydra-ai/issues"
+  },
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

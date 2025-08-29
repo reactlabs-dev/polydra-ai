@@ -1,0 +1,64 @@
+/*
+ * Replace this with your own classes
+ *
+ * e.g.
+ * .container {
+ * }
+*/
+
+.statistics {
+    display: flex;
+    flex-direction: column;
+    background-color: #F4F1D6;
+    padding: 10px;
+    width: 100%;
+    color: #987D56;
+    text-align: center;
+    font-size: medium;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    margin-top: 20px;
+
+    h3 {
+        color: #987D56;
+        margin-bottom: 0;
+    }
+
+    button {
+        background-color: #987D56;
+        color: #FFFFFF;
+    }
+}
+
+.statistics-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .statistics-banner-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h4 {
+        margin-bottom: 0;
+    }
+  }
+  
+  .statistics-text {
+    margin: 0 20px;
+    font-size: 1.2em;
+    text-align: center;
+  }
+
+.left-button {
+    position: absolute;
+    left: 0;
+}
+
+.right-button {
+    position: absolute;
+    right: 0;
+}
