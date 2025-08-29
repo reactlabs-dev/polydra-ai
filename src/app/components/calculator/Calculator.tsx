@@ -6,11 +6,13 @@ import Visualization from '../visualization/Visualization';
 import FactorSlider from '../factorSlider/FactorSlider';
 
 /* eslint-disable-next-line */
-export interface CalculatorProps {}
+export interface CalculatorProps {
+  'data-testid'?: string;
+}
 
-export function Calculator(props: CalculatorProps) {
+function Calculator(props: CalculatorProps) {
 
-  const [factors, setFactors] = useState<Factor[]>(initialFactors);
+  const [factors, setFactors] = useState<Factor[]>(initialFactors || []); // Add fallback
 
   const handleScoreChange = (index: number, value: number) => {
     const newFactors = [...factors];
@@ -27,7 +29,7 @@ export function Calculator(props: CalculatorProps) {
   };
 
   const calculateCompositeScore = () => {
-    return factors.reduce((acc, factor) => acc + factor.score * factor.weight, 0);
+    return (factors || []).reduce((acc, factor) => acc + factor.score * factor.weight, 0);
   };
 
   const getMaturityLevel = (score: number) => {
@@ -66,7 +68,7 @@ export function Calculator(props: CalculatorProps) {
   
 
   return (
-    <div className={styles['calculator']}>
+    <div className={styles['calculator']} data-testid={props['data-testid']}>
       <div className="grid factors" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div className="col-9 flex flex-column text-center justify-content-center align-content-center" style={{ width: '100%' }}>
           <CompositeScoreDisplay 

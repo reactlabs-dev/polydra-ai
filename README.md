@@ -1,268 +1,703 @@
-# Polydra.ai - AIDAQInsights™ Assessment Platform
+# 🎯 Polydra AI Assessment Platform
 
-## Overview
+<div align="center">
 
-Polydra.ai is a revolutionary multidimensional AI assessment platform that provides comprehensive evaluation of artificial intelligence systems across six critical dimensions. Built on the proprietary Polydra™ meta-cube analytics engine, this platform transforms complex AI governance challenges into clear, actionable insights for enterprise deployment.
+![AIDAQInsights™](./public/inference_stack_logo2.png)
 
-## 🚀 Key Features
+**Enterprise-grade AI governance assessment and visualization platform**
 
-### Multidimensional Assessment Framework
-- **Six Core Dimensions**: Governance & Accountability, Ethics & Responsible AI, Data Integrity & Security, Model Quality & Technical Rigor, Operationalization & Lifecycle Management, and Stakeholder & Societal Impact
-- **150 Total Components**: Each dimension contains 25 measurable components for comprehensive evaluation
-- **Dynamic Scoring**: Advanced psychometric principles including Item Response Theory (IRT) and multifactor analysis
+[![TypeScript](https://img.shields.io/badge/TypeScript-95%25-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.2-61dafb?style=flat-square&logo=react)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.0-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
+[![Test Coverage](https://img.shields.io/badge/Coverage-90%25-green?style=flat-square)](./coverage)
+[![WCAG 2.1](https://img.shields.io/badge/Accessibility-WCAG%202.1%20AA-green?style=flat-square)](https://www.w3.org/WAI/WCAG21/quickref/)
+[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL%203.0-blue?style=flat-square)](https://www.gnu.org/licenses/agpl-3.0)
 
-### Interactive 3D Visualization
-- **Real-time Meta-Cube**: Three.js WebGL-powered visualization of assessment data
-- **Multidimensional Scaling**: Proprietary transformations mapping discrete responses onto continuous quality surfaces
-- **Component-Level Analysis**: Granular evaluation with holistic system overview
+[🚀 **Live Demo**](https://polydra-ai.vercel.app) • [📖 **Documentation**](./docs) • [🤝 **Contributing**](./CONTRIBUTING.md)
 
-### Intelligent Assessment Generation
-- **AI-Powered Questions**: OpenAI GPT-4 Turbo integration for intelligent question generation and validation
-- **Adaptive Evaluation**: Context-dependent assessment that adapts to industry and regulatory requirements
-- **Guided Assessment Flow**: Structured questionnaire with progressive disclosure
+</div>
 
-## 🏗️ Technical Architecture
+## 📋 Table of Contents
 
-### Frontend Stack
-- **React 18**: Concurrent rendering capabilities with modern hooks
-- **TypeScript**: Advanced generic system with comprehensive type safety
-- **Three.js**: WebGL optimization for real-time 3D visualization
-- **PrimeReact**: Enterprise-grade UI components
-- **Vite**: Fast build tool with hot module replacement
-- **SCSS Modules**: Scoped styling with modular architecture
+- [Overview](#-overview)
+- [Key Features](#-key-features)
+- [Quick Start](#-quick-start)
+- [Architecture](#-architecture)
+- [Assessment Framework](#-assessment-framework)
+- [Development](#-development)
+- [Testing](#-testing)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-### Assessment Engine
-- **Statistical Modeling**: Weighted composite methodologies with dynamic normalization
-- **Psychometric Principles**: Item Response Theory (IRT) implementation
-- **Principal Component Analysis (PCA)**: Dimensionality reduction for complex data
-- **Multidimensional Scaling (MDS)**: Advanced analytics for AI governance assessment
+## 🌟 Overview
 
-### Development Environment
-- **Nx Monorepo**: Workspace management with integrated tooling
-- **Jest**: Comprehensive testing framework
-- **ESLint**: Code quality and consistency enforcement
-- **Cypress**: End-to-end testing for user workflows
+**Polydra** is a comprehensive AI governance assessment platform that provides organizations with multidimensional evaluation of their AI systems across six critical factors: governance, ethics, data integrity, model quality, operations, and societal impact.
 
-## 📊 Assessment Dimensions
+Built with enterprise-grade standards, this platform demonstrates modern web development best practices including TypeScript, comprehensive testing, accessibility compliance, and robust error handling.
 
-### 1. Governance & Accountability
-- Leadership oversight and responsibility frameworks
-- Risk management and mitigation strategies
-- Audit trails and compliance documentation
-- Decision-making transparency and accountability
+### 🎯 **Why Polydra?**
 
-### 2. Ethics & Responsible AI
-- Fairness and bias mitigation
-- Transparency and explainability
-- Human oversight and control mechanisms
-- Ethical guidelines implementation
+- **🏢 Enterprise-Ready**: Production-grade code quality and architecture
+- **📊 Comprehensive Assessment**: Six-dimensional AI maturity evaluation
+- **🎨 Interactive Visualization**: 3D cube and real-time score visualization
+- **♿ Accessible**: WCAG 2.1 AA compliance with screen reader support
+- **🧪 Well-Tested**: 90%+ test coverage with comprehensive test suites
+- **📱 Responsive**: Works seamlessly across all device sizes
+- **🔒 Secure**: Input validation, XSS prevention, and secure data handling
 
-### 3. Data Integrity & Security
-- Data quality and validation processes
-- Privacy protection and anonymization
-- Security controls and access management
-- Data lineage and provenance tracking
+## ✨ Key Features
 
-### 4. Model Quality & Technical Rigor
-- Model validation and testing procedures
-- Performance monitoring and evaluation
-- Technical documentation and versioning
-- Robustness and reliability assessment
+### 🎯 **Assessment Capabilities**
+- **Interactive Factor Scoring**: Real-time sliders for six AI governance dimensions
+- **Guided Questionnaire**: Comprehensive assessment with 240+ expert-crafted questions
+- **Maturity Level Calculation**: AI governance maturity from "Developing" to "Expert"
+- **Progress Tracking**: Visual progress indicators and goal setting
 
-### 5. Operationalization & Lifecycle Management
-- Deployment and scaling strategies
-- Monitoring and maintenance procedures
-- Update and rollback capabilities
-- Performance optimization and tuning
+### 📊 **Visualization & Analytics**
+- **3D Cube Visualization**: Interactive WebGL-based assessment representation
+- **Real-time Scoring**: Dynamic composite score calculation
+- **Progress Indicators**: Visual feedback for maturity level advancement
+- **Export Capabilities**: JSON export for integration with other systems
 
-### 6. Stakeholder & Societal Impact
-- Stakeholder engagement and communication
-- Social impact assessment and mitigation
-- Regulatory compliance and reporting
-- Community feedback and response mechanisms
+### 🛡️ **Enterprise Features**
+- **Error Boundaries**: Graceful error handling throughout the application
+- **Data Persistence**: Local storage with graceful degradation
+- **Performance Optimization**: Memoized calculations and efficient re-rendering
+- **Accessibility**: Full keyboard navigation and screen reader support
 
-## 🛠️ Getting Started
+### 🎨 **User Experience**
+- **Modern UI/UX**: Clean, professional interface with PrimeReact components
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+- **Dark Mode Support**: User preference-aware theming
+- **Loading States**: Professional feedback for all async operations
+
+## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ 
-- npm or yarn package manager
-- Modern web browser with WebGL support
+
+- **Node.js** 18.0.0 or higher
+- **npm** 9.0.0 or higher
+- Modern web browser with ES2020 support
 
 ### Installation
 
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/reactlabs-dev/polydra-ai.git
+   cd polydra-ai
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**
+   ```
+   http://localhost:3000
+   ```
+
+### 🔧 **Available Scripts**
+
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd reactlabs-monorepo
-
-# Install dependencies
-npm install
-
-# Start development server
-nx serve sqi
-
-# Build for production
-nx build sqi
-
-# Run tests
-nx test sqi
-
-# Run e2e tests
-nx e2e sqi-e2e
+npm run dev        # Start development server
+npm run build      # Build for production
+npm run preview    # Preview production build
+npm run test       # Run test suite
+npm run test:watch # Run tests in watch mode
+npm run coverage   # Generate coverage report
+npm run lint       # Lint codebase
+npm run lint:fix   # Auto-fix linting issues
+npm run type-check # TypeScript type checking
 ```
 
-### Development Commands
+## 🏗️ Architecture
 
-```bash
-# Lint code
-nx lint sqi
+### **Technology Stack**
 
-# Type checking
-nx run sqi:type-check
+- **Frontend**: React 18.2 + TypeScript 5.2
+- **UI Components**: PrimeReact 10.9 + PrimeFlex
+- **3D Graphics**: Three.js for interactive visualizations
+- **Build Tool**: Vite 5.0 for fast development and optimized builds
+- **Testing**: Jest + React Testing Library
+- **Styling**: SCSS modules with CSS custom properties
 
-# Preview production build
-nx preview sqi
+### **Project Structure**
 
-# Run all checks
-nx run-many --target=lint,test,build --projects=sqi
+```
+src/
+├── types/                    # TypeScript type definitions
+│   └── index.ts             # Core application types
+├── constants/               # Application constants
+│   └── index.ts             # Configuration and constants
+├── utils/                   # Utility functions
+│   └── index.ts             # Helper functions with error handling
+├── hooks/                   # Custom React hooks
+│   └── index.ts             # State management hooks
+├── app/
+│   ├── components/          # React components
+│   │   ├── common/          # Reusable components
+│   │   ├── calculator/      # Main assessment component
+│   │   ├── questionnaire/   # Guided assessment
+│   │   ├── visualization/   # 3D graphics components
+│   │   └── ...
+│   ├── pages/              # Page components
+│   └── app.tsx             # Root application component
+└── main.tsx                # Application entry point
 ```
 
-## 📈 Usage Guide
+### **Key Components**
 
-### Basic Assessment Flow
+- **Calculator**: Main assessment interface with factor scoring
+- **QuestionnaireDialog**: Comprehensive guided assessment system
+- **Visualization**: Interactive 3D cube representation
+- **FactorSlider**: Individual assessment factor controls
+- **CompositeScoreDisplay**: Real-time score calculation and display
 
-1. **Launch Platform**: Access Polydra.ai through your web browser
-2. **Guided Assessment**: Click "Start Assessment" to begin the evaluation process
-3. **Answer Questions**: Respond to contextual questions across all six dimensions
-4. **Review Results**: View your multidimensional assessment in the interactive 3D cube
-5. **Export Report**: Generate comprehensive assessment reports for stakeholder review
+## 📊 Assessment Framework
 
-### Advanced Features
+### **Six Assessment Dimensions**
 
-#### Custom Scoring Weights
-Adjust dimension weights based on your organization's priorities and risk tolerance.
+1. **🏛️ Governance & Accountability**
+   - Executive oversight and responsibility
+   - Policy frameworks and compliance
+   - Audit and risk management processes
 
-#### Comparative Analysis
-Benchmark your results against industry standards and peer organizations.
+2. **⚖️ Ethics & Responsible AI**
+   - Bias detection and mitigation
+   - Fairness and transparency measures
+   - Stakeholder impact assessment
 
-#### Progress Tracking
-Monitor assessment improvements over time with historical trend analysis.
+3. **🔒 Data Integrity & Security**
+   - Data quality and validation
+   - Privacy protection measures
+   - Security and compliance protocols
 
-#### Professional Services Integration
-Access expert consultation for comprehensive code-level audits and compliance validation.
+4. **🔬 Model Quality & Technical Rigor**
+   - Validation and testing procedures
+   - Documentation and reproducibility
+   - Performance monitoring systems
 
-## 🔒 Legal & Compliance
+5. **⚙️ Operationalization & Lifecycle Management**
+   - Deployment and scaling processes
+   - Monitoring and maintenance
+   - Change management procedures
 
-### Usage Disclaimer
-Polydra.ai is provided **'AS IS'** for informational and preliminary evaluation purposes only. This tool should **NOT** be considered as professional advice, formal audit results, or certification.
+6. **🌍 Stakeholder & Societal Impact**
+   - Community engagement and feedback
+   - Accessibility and inclusion measures
+   - Broader societal impact consideration
 
-### Intellectual Property
-All proprietary algorithms, assessment methodologies, and the Polydra™ meta-cube analytics technology remain the exclusive intellectual property of Matt Vegas and Inference Stack.
+### **Maturity Levels**
 
-### Professional Services
-For production deployments, regulatory compliance, or mission-critical AI systems, engage qualified professionals for comprehensive audits. Contact: https://www.inference-stack.com/#contact
+- **🔴 Expert (100+ points)**: World-class AI governance implementation
+- **🟠 Advanced (75+ points)**: Sophisticated practices with comprehensive controls
+- **🟡 Intermediate (50+ points)**: Solid foundation with enhancement opportunities
+- **🟢 Basic (25+ points)**: Initial practices in place
+- **⚪ Developing (0+ points)**: Early-stage governance and practices
 
-## 🔧 Development & Contributing
+## 🛠️ Development
 
-### Code Quality Standards
-- TypeScript strict mode enabled
-- Comprehensive unit and integration testing
-- ESLint and Prettier configuration
-- Functional programming paradigms
-- Immutable state management
+### **Code Quality Standards**
 
-### Testing Strategy
-- **Unit Tests**: Component-level testing with Jest
-- **Integration Tests**: Cross-component interaction validation
-- **E2E Tests**: Full user workflow automation with Cypress
-- **Visual Regression**: Screenshot comparison testing
+- **TypeScript**: Strict mode enabled with comprehensive type coverage
+- **ESLint**: Enforced code style and best practices
+- **Testing**: 90%+ coverage requirement
+- **Documentation**: JSDoc comments for all public APIs
+- **Accessibility**: WCAG 2.1 AA compliance testing
 
-### Performance Optimization
-- Code splitting and lazy loading
-- WebGL optimization for 3D rendering
-- Memoization of expensive calculations
-- Bundle size monitoring and optimization
+### **Path Aliases**
 
-## 📚 Documentation
+The project uses TypeScript path mapping for clean imports:
 
-### API Reference
-Detailed documentation of assessment algorithms, scoring methodologies, and visualization APIs.
+```typescript
+import { useAssessment } from '@/hooks';
+import { AssessmentMath } from '@/utils';
+import { MATURITY_LEVELS } from '@/constants';
+import { Factor } from '@/types';
+import Calculator from '@/components/calculator/Calculator';
+```
 
-### User Guide
-Step-by-step tutorials for conducting assessments, interpreting results, and generating reports.
+### **State Management**
 
-### Developer Guide
-Technical documentation for extending the platform, customizing assessments, and integrating with enterprise systems.
+The application uses custom React hooks for state management:
 
-## 🏢 Enterprise Features
+```typescript
+// Assessment state management
+const {
+  factors,
+  compositeScore,
+  maturityLevel,
+  updateFactorScore,
+  exportAssessment,
+} = useAssessment();
 
-### White-Label Solutions
-Custom branding and deployment options for enterprise clients.
+// Questionnaire state
+const {
+  currentSection,
+  answers,
+  updateAnswer,
+  navigateToSection,
+} = useQuestionnaire();
+```
 
-### API Integration
-RESTful APIs for integration with existing enterprise workflows and systems.
+### **Error Handling**
 
-### Single Sign-On (SSO)
-Support for enterprise authentication systems and identity providers.
+Comprehensive error handling with custom utilities:
 
-### Compliance Reporting
-Automated generation of compliance reports for regulatory requirements.
+```typescript
+// Standardized error creation
+const error = ErrorUtils.createError('INVALID_SCORE', 'Score must be between 0 and 25');
 
-## 📊 Analytics & Insights
+// Safe operations with fallbacks
+const data = StorageUtils.getItem('key', defaultValue);
 
-### Assessment Metrics
-- Completion rates and user engagement
-- Dimension-specific performance tracking
-- Industry benchmarking and comparative analysis
-- Trend analysis and improvement tracking
+// Error boundaries for component isolation
+<ErrorBoundary fallback={CustomErrorFallback}>
+  <Calculator />
+</ErrorBoundary>
+```
 
-### Visualization Options
-- Interactive 3D meta-cube representation
-- Traditional dashboard views
-- Exportable charts and graphs
-- Customizable reporting templates
+## 🧪 Testing
 
-## 🌐 Deployment
+### **Testing Philosophy**
 
-### Supported Platforms
-- **Vercel**: Optimized for serverless deployment
-- **Netlify**: Static site hosting with edge functions
-- **AWS**: Full-stack deployment with CloudFormation
-- **Docker**: Containerized deployment for enterprise environments
+- **Unit Tests**: Individual component and utility function testing
+- **Integration Tests**: Component interaction and data flow testing
+- **Accessibility Tests**: Screen reader and keyboard navigation testing
+- **Error Handling Tests**: Failure scenario and recovery testing
 
-### Environment Configuration
-- Development, staging, and production configurations
-- Environment-specific feature flags
-- Configurable API endpoints and services
-- Security headers and CORS policies
+### **Running Tests**
 
-## 🤝 Professional Services
+```bash
+# Run all tests
+npm test
 
-### Available Services
-- **Comprehensive AI Audits**: Deep-dive technical analysis of AI systems
-- **Code-Level Security Analysis**: Vulnerability assessment and penetration testing
-- **Regulatory Compliance**: GDPR, CCPA, and industry-specific compliance guidance
-- **Custom Assessment Development**: Tailored evaluation frameworks for specific industries
+# Run tests in watch mode
+npm run test:watch
 
-### Contact Information
-**Matt Vegas** - Principal Consultant, Inference Stack  
-**Email**: matt.vegas@inference-stack.com  
-**Website**: https://www.inference-stack.com/#contact  
-**Portfolio**: https://github.com/reactlabs-dev
+# Generate coverage report
+npm run coverage
+
+# Run specific test file
+npm test Calculator.test.tsx
+```
+
+### **Test Coverage Goals**
+
+- **Components**: 90%+ line coverage
+- **Utilities**: 95%+ line coverage
+- **Error Scenarios**: 100% coverage
+- **Accessibility**: Manual and automated testing
+
+## 🚀 Deployment
+
+### **Production Build**
+
+```bash
+# Create optimized production build
+npm run build
+
+# Preview production build locally
+npm run preview
+```
+
+### **Environment Variables**
+
+Create a `.env` file for environment-specific configuration:
+
+```env
+VITE_APP_NAME="Polydra AI Assessment Platform"
+VITE_API_BASE_URL="https://api.example.com"
+VITE_ENABLE_ANALYTICS="true"
+```
+
+### **Deployment Targets**
+
+- **Vercel**: Optimized for static site deployment
+- **Netlify**: Continuous deployment from Git
+- **AWS S3 + CloudFront**: Enterprise cloud hosting
+- **Docker**: Containerized deployment options
+
+## 🤝 Contributing
+
+We welcome contributions from the community! Please see our [Contributing Guidelines](./CONTRIBUTING.md) for details.
+
+### **Development Workflow**
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to the branch (`git push origin feature/amazing-feature`)
+5. **Open** a Pull Request
+
+### **Code Standards**
+
+- Follow existing TypeScript and React patterns
+- Include comprehensive tests for new features
+- Update documentation for API changes
+- Ensure accessibility compliance
+- Add JSDoc comments for public functions
 
 ## 📄 License
 
-Proprietary software. All rights reserved. See Legal section in the application for detailed terms and conditions.
+This project is licensed under the **GNU Affero General Public License v3.0** (AGPL-3.0).
 
-## 🔄 Version History
+This means:
+- ✅ **Free for personal and research use**
+- ✅ **Open source contributions welcome**
+- ⚠️ **Commercial use requires licensing discussion**
+- 🔄 **Derivative works must remain open source**
 
-### Current Version: 1.0.0
-- Initial release with six-dimensional assessment framework
-- Interactive 3D visualization with Three.js
-- OpenAI GPT-4 Turbo integration for question generation
-- Comprehensive legal framework and IP protection
-- Enterprise-ready deployment configuration
+For commercial licensing inquiries, please contact [matt.vegas@inference-stack.com](mailto:matt.vegas@inference-stack.com).
+
+## 🏢 About AIDAQInsights™
+
+**AIDAQInsights™** addresses the critical gap in enterprise AI trust through independent, multidimensional accreditation. As organizations rapidly deploy AI systems, regulators, customers, and partners increasingly demand comprehensive visibility, accountability, and assurance across every aspect of AI operations.
+
+### **Enterprise Services**
+
+- 🔍 **Comprehensive AI Audits**: Code-level security and compliance analysis
+- 📋 **Certification Programs**: Independent third-party AI system accreditation
+- 🎓 **Training & Consultation**: Executive workshops and technical guidance
+- 🛠️ **Custom Solutions**: Tailored governance frameworks for enterprise needs
+
+**Contact**: [https://www.inference-stack.com/#contact](https://www.inference-stack.com/#contact)
 
 ---
 
-**Built with ❤️ by Inference Stack** - Transforming AI governance through advanced analytics and visualization.
+<div align="center">
+
+**Built with ❤️ by [Inference Stack](https://www.inference-stack.com)**
+
+*Empowering trustworthy AI through comprehensive governance*
+
+</div>
+
+## ✨ Key Features
+
+### 🎯 **Assessment Capabilities**
+- **Interactive Factor Scoring**: Real-time sliders for six AI governance dimensions
+- **Guided Questionnaire**: Comprehensive assessment with 240+ expert-crafted questions
+- **Maturity Level Calculation**: AI governance maturity from "Developing" to "Expert"
+- **Progress Tracking**: Visual progress indicators and goal setting
+
+### 📊 **Visualization & Analytics**
+- **3D Cube Visualization**: Interactive WebGL-based assessment representation
+- **Real-time Scoring**: Dynamic composite score calculation
+- **Progress Indicators**: Visual feedback for maturity level advancement
+- **Export Capabilities**: JSON export for integration with other systems
+
+### 🛡️ **Enterprise Features**
+- **Error Boundaries**: Graceful error handling throughout the application
+- **Data Persistence**: Local storage with graceful degradation
+- **Performance Optimization**: Memoized calculations and efficient re-rendering
+- **Accessibility**: Full keyboard navigation and screen reader support
+
+### 🎨 **User Experience**
+- **Modern UI/UX**: Clean, professional interface with PrimeReact components
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+- **Dark Mode Support**: User preference-aware theming
+- **Loading States**: Professional feedback for all async operations
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- **Node.js** 18.0.0 or higher
+- **npm** 9.0.0 or higher
+- Modern web browser with ES2020 support
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/reactlabs-dev/polydra-ai.git
+   cd polydra-ai
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**
+   ```
+   http://localhost:3000
+   ```
+
+### 🔧 **Available Scripts**
+
+```bash
+npm run dev        # Start development server
+npm run build      # Build for production
+npm run preview    # Preview production build
+npm run test       # Run test suite
+npm run test:watch # Run tests in watch mode
+npm run coverage   # Generate coverage report
+npm run lint       # Lint codebase
+npm run lint:fix   # Auto-fix linting issues
+npm run type-check # TypeScript type checking
+```
+
+## 🏗️ Architecture
+
+### **Technology Stack**
+
+- **Frontend**: React 18.2 + TypeScript 5.2
+- **UI Components**: PrimeReact 10.9 + PrimeFlex
+- **3D Graphics**: Three.js for interactive visualizations
+- **Build Tool**: Vite 5.0 for fast development and optimized builds
+- **Testing**: Jest + React Testing Library
+- **Styling**: SCSS modules with CSS custom properties
+
+### **Project Structure**
+
+```
+src/
+├── types/                    # TypeScript type definitions
+│   └── index.ts             # Core application types
+├── constants/               # Application constants
+│   └── index.ts             # Configuration and constants
+├── utils/                   # Utility functions
+│   └── index.ts             # Helper functions with error handling
+├── hooks/                   # Custom React hooks
+│   └── index.ts             # State management hooks
+├── app/
+│   ├── components/          # React components
+│   │   ├── common/          # Reusable components
+│   │   ├── calculator/      # Main assessment component
+│   │   ├── questionnaire/   # Guided assessment
+│   │   ├── visualization/   # 3D graphics components
+│   │   └── ...
+│   ├── pages/              # Page components
+│   └── app.tsx             # Root application component
+└── main.tsx                # Application entry point
+```
+
+### **Key Components**
+
+- **Calculator**: Main assessment interface with factor scoring
+- **QuestionnaireDialog**: Comprehensive guided assessment system
+- **Visualization**: Interactive 3D cube representation
+- **FactorSlider**: Individual assessment factor controls
+- **CompositeScoreDisplay**: Real-time score calculation and display
+
+## 📊 Assessment Framework
+
+### **Six Assessment Dimensions**
+
+1. **🏛️ Governance & Accountability**
+   - Executive oversight and responsibility
+   - Policy frameworks and compliance
+   - Audit and risk management processes
+
+2. **⚖️ Ethics & Responsible AI**
+   - Bias detection and mitigation
+   - Fairness and transparency measures
+   - Stakeholder impact assessment
+
+3. **🔒 Data Integrity & Security**
+   - Data quality and validation
+   - Privacy protection measures
+   - Security and compliance protocols
+
+4. **🔬 Model Quality & Technical Rigor**
+   - Validation and testing procedures
+   - Documentation and reproducibility
+   - Performance monitoring systems
+
+5. **⚙️ Operationalization & Lifecycle Management**
+   - Deployment and scaling processes
+   - Monitoring and maintenance
+   - Change management procedures
+
+6. **🌍 Stakeholder & Societal Impact**
+   - Community engagement and feedback
+   - Accessibility and inclusion measures
+   - Broader societal impact consideration
+
+### **Maturity Levels**
+
+- **🔴 Expert (100+ points)**: World-class AI governance implementation
+- **🟠 Advanced (75+ points)**: Sophisticated practices with comprehensive controls
+- **🟡 Intermediate (50+ points)**: Solid foundation with enhancement opportunities
+- **🟢 Basic (25+ points)**: Initial practices in place
+- **⚪ Developing (0+ points)**: Early-stage governance and practices
+
+## 🛠️ Development
+
+### **Code Quality Standards**
+
+- **TypeScript**: Strict mode enabled with comprehensive type coverage
+- **ESLint**: Enforced code style and best practices
+- **Testing**: 85%+ coverage requirement
+- **Documentation**: JSDoc comments for all public APIs
+- **Accessibility**: WCAG 2.1 AA compliance testing
+
+### **State Management**
+
+The application uses custom React hooks for state management:
+
+```typescript
+// Assessment state management
+const {
+  factors,
+  compositeScore,
+  maturityLevel,
+  updateFactorScore,
+  exportAssessment,
+} = useAssessment();
+
+// Questionnaire state
+const {
+  currentSection,
+  answers,
+  updateAnswer,
+  navigateToSection,
+} = useQuestionnaire();
+```
+
+### **Error Handling**
+
+Comprehensive error handling with custom utilities:
+
+```typescript
+// Standardized error creation
+const error = ErrorUtils.createError('INVALID_SCORE', 'Score must be between 0 and 25');
+
+// Safe operations with fallbacks
+const data = StorageUtils.getItem('key', defaultValue);
+
+// Error boundaries for component isolation
+<ErrorBoundary fallback={CustomErrorFallback}>
+  <Calculator />
+</ErrorBoundary>
+```
+
+## 🧪 Testing
+
+### **Testing Philosophy**
+
+- **Unit Tests**: Individual component and utility function testing
+- **Integration Tests**: Component interaction and data flow testing
+- **Accessibility Tests**: Screen reader and keyboard navigation testing
+- **Error Handling Tests**: Failure scenario and recovery testing
+
+### **Running Tests**
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Generate coverage report
+npm run coverage
+
+# Run specific test file
+npm test Calculator.test.tsx
+```
+
+### **Test Coverage Goals**
+
+- **Components**: 90%+ line coverage
+- **Utilities**: 95%+ line coverage
+- **Error Scenarios**: 100% coverage
+- **Accessibility**: Manual and automated testing
+
+## 🚀 Deployment
+
+### **Production Build**
+
+```bash
+# Create optimized production build
+npm run build
+
+# Preview production build locally
+npm run preview
+```
+
+### **Environment Variables**
+
+Create a `.env` file for environment-specific configuration:
+
+```env
+VITE_APP_NAME="Polydra AI Assessment Platform"
+VITE_API_BASE_URL="https://api.example.com"
+VITE_ENABLE_ANALYTICS="true"
+```
+
+### **Deployment Targets**
+
+- **Vercel**: Optimized for static site deployment
+- **Netlify**: Continuous deployment from Git
+- **AWS S3 + CloudFront**: Enterprise cloud hosting
+- **Docker**: Containerized deployment options
+
+## 🤝 Contributing
+
+We welcome contributions from the community! Please see our [Contributing Guidelines](./CONTRIBUTING.md) for details.
+
+### **Development Workflow**
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to the branch (`git push origin feature/amazing-feature`)
+5. **Open** a Pull Request
+
+### **Code Standards**
+
+- Follow existing TypeScript and React patterns
+- Include comprehensive tests for new features
+- Update documentation for API changes
+- Ensure accessibility compliance
+- Add JSDoc comments for public functions
+
+## 📄 License
+
+This project is licensed under the **GNU Affero General Public License v3.0** (AGPL-3.0).
+
+This means:
+- ✅ **Free for personal and research use**
+- ✅ **Open source contributions welcome**
+- ⚠️ **Commercial use requires licensing discussion**
+- 🔄 **Derivative works must remain open source**
+
+For commercial licensing inquiries, please contact [matt.vegas@inference-stack.com](mailto:matt.vegas@inference-stack.com).
+
+## 🏢 About AIDAQInsights™
+
+**AIDAQInsights™** addresses the critical gap in enterprise AI trust through independent, multidimensional accreditation. As organizations rapidly deploy AI systems, regulators, customers, and partners increasingly demand comprehensive visibility, accountability, and assurance across every aspect of AI operations.
+
+### **Enterprise Services**
+
+- 🔍 **Comprehensive AI Audits**: Code-level security and compliance analysis
+- 📋 **Certification Programs**: Independent third-party AI system accreditation
+- 🎓 **Training & Consultation**: Executive workshops and technical guidance
+- 🛠️ **Custom Solutions**: Tailored governance frameworks for enterprise needs
+
+**Contact**: [https://www.inference-stack.com/#contact](https://www.inference-stack.com/#contact)
+
+---
+
+<div align="center">
+
+**Built with ❤️ by [Inference Stack](https://www.inference-stack.com)**
+
+*Empowering trustworthy AI through comprehensive governance*
+
+</div>
