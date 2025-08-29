@@ -18,7 +18,7 @@ export const APP_CONFIG = {
   author: 'Matt Vegas',
   company: 'Inference Stack',
   website: 'https://www.inference-stack.com',
-  repository: 'https://github.com/reactlabs-dev/polydra-ai',
+  repository: 'https://github.com/reactlabs-dev/polydraiq',
   license: 'AGPL-3.0',
   trademark: 'AIDAQInsights™',
 } as const;
@@ -311,5 +311,5 @@ export const EXTERNAL_LINKS = {
   contact: 'https://www.inference-stack.com/#contact',
   documentation: 'https://docs.inference-stack.com/polydra',
   support: 'mailto:support@inference-stack.com',
-  github: 'https://github.com/reactlabs-dev/polydra-ai',
+  github: 'https://github.com/reactlabs-dev/polydraiq',
 } as const;

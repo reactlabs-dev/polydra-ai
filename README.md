@@ -1,4 +1,4 @@
-# 🎯 Polydra AI Assessment Platform
+# 🎯 PolydraIQ Assessment Platform
 
 <div align="center">
 
@@ -13,7 +13,7 @@
 [![WCAG 2.1](https://img.shields.io/badge/Accessibility-WCAG%202.1%20AA-green?style=flat-square)](https://www.w3.org/WAI/WCAG21/quickref/)
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL%203.0-blue?style=flat-square)](https://www.gnu.org/licenses/agpl-3.0)
 
-[🚀 **Live Demo**](https://polydra-ai.vercel.app) • [📖 **Documentation**](./docs) • [🤝 **Contributing**](./CONTRIBUTING.md)
+[🚀 **Live Demo**](https://polydraiq.com) • [📖 **Documentation**](./docs) • [🤝 **Contributing**](./CONTRIBUTING.md)
 
 </div>
 
@@ -32,11 +32,11 @@
 
 ## 🌟 Overview
 
-**Polydra** is a comprehensive AI governance assessment platform that provides organizations with multidimensional evaluation of their AI systems across six critical factors: governance, ethics, data integrity, model quality, operations, and societal impact.
+**PolydraIQ** is a comprehensive AI governance assessment platform that provides organizations with multidimensional evaluation of their AI systems across six critical factors: governance, ethics, data integrity, model quality, operations, and societal impact.
 
 Built with enterprise-grade standards, this platform demonstrates modern web development best practices including TypeScript, comprehensive testing, accessibility compliance, and robust error handling.
 
-### 🎯 **Why Polydra?**
+### 🎯 **Why PolydraIQ?**
 
 - **🏢 Enterprise-Ready**: Production-grade code quality and architecture
 - **📊 Comprehensive Assessment**: Six-dimensional AI maturity evaluation

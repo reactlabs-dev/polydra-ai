@@ -7,9 +7,9 @@ describe('App', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should have Polydra.ai as the main title', () => {
+  it('should have PolydraIQ as the main title', () => {
     const { getByText } = render(<App />, { withRouter: true });
-    expect(getByText(/Polydra\.ai/i)).toBeTruthy();
+    expect(getByText(/PolydraIQ/i)).toBeTruthy();
   });
 
   it('should display the composite quality score', () => {

@@ -1,4 +1,4 @@
-# Polydra.ai SQI App Deployment Guide
+# PolydraIQ Deployment Guide
 
 ## Pre-deployment Checklist
 

@@ -1,6 +1,6 @@
-# Polydra.ai Standalone Setup Instructions
+# PolydraIQ Standalone Setup Instructions
 
-This directory contains the standalone version of Polydra.ai extracted from the Nx monorepo.
+This directory contains the standalone version of PolydraIQ extracted from the Nx monorepo.
 
 ## Quick Start
 

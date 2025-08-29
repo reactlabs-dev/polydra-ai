@@ -1,7 +1,7 @@
 {
-  "name": "polydra-ai",
+  "name": "polydraiq",
   "version": "1.0.0",
-  "description": "Polydra.ai - AIDAQInsights™ Assessment Platform - Multidimensional AI assessment and visualization",
+  "description": "PolydraIQ - AIDAQInsights™ Assessment Platform - Multidimensional AI assessment and visualization",
   "private": true,
   "type": "module",
   "scripts": {
@@ -66,11 +66,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/reactlabs-dev/polydra-ai.git"
+    "url": "git+https://github.com/reactlabs-dev/polydraiq.git"
   },
-  "homepage": "https://github.com/reactlabs-dev/polydra-ai#readme",
+  "homepage": "https://polydraiq.com",
   "bugs": {
-    "url": "https://github.com/reactlabs-dev/polydra-ai/issues"
+    "url": "https://github.com/reactlabs-dev/polydraiq/issues"
   },
   "license": "UNLICENSED",
   "engines": {
