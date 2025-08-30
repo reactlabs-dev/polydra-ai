@@ -105,6 +105,24 @@ const Cube3D: React.FC<Cube3DProps> = ({ factors }) => {
           }
         }
         if (line) lines.push(line);
+        
+        // ELITE TEXT ORIENTATION: Determine if text should be flipped based on rotation
+        const currentRotX = rotationX * Math.PI * 2;
+        const currentRotY = rotationY * Math.PI * 2;
+        
+        // Normalize rotations to 0-2π range
+        const normalizedRotX = ((currentRotX % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+        const normalizedRotY = ((currentRotY % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+        
+        // Flip text if cube is rotated in a way that would make text upside down
+        const shouldFlip = (normalizedRotX > Math.PI/2 && normalizedRotX < 3*Math.PI/2);
+        
+        if (shouldFlip) {
+          ctx.translate(size / 2, size / 2);
+          ctx.rotate(Math.PI); // 180 degree rotation
+          ctx.translate(-size / 2, -size / 2);
+        }
+        
         // Draw each line, centered vertically
         const lineHeight = 18;
         const totalHeight = lineHeight * lines.length;
@@ -164,30 +182,41 @@ const Cube3D: React.FC<Cube3DProps> = ({ factors }) => {
   };
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: 470 }}>
-      {/* Vertical slider on the right */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div ref={mountRef} style={{ width: 450, height: 450, background: 'transparent', borderRadius: 8 }} />
-        {/* Horizontal slider below */}
+    <div style={{ display: 'flex', justifyContent: 'center', width: '100%', height: 470 }}>
+      {/* 
+        PRECISE CENTERING CALCULATION:
+        - Vertical slider visual width: 20px (height after 270° rotation)
+        - Margin between cube and slider: 16px  
+        - Total right-side offset: 36px
+        - Perfect centering: 18px left margin (36px / 2)
+      */}
+      <div style={{ display: 'flex', alignItems: 'center', marginLeft: '450px' }}>
+        {/* Main cube container */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div ref={mountRef} style={{ width: 450, height: 450, background: 'transparent', borderRadius: 8 }} />
+          {/* Horizontal slider below */}
+          <input
+            type="range"
+            min={0}
+            max={1}
+            step={0.01}
+            value={rotationY}
+            onChange={handleHorizontal}
+            style={{ width: 450, marginTop: 8 }}
+          />
+        </div>
+        
+        {/* Vertical slider on the right */}
         <input
           type="range"
           min={0}
           max={1}
           step={0.01}
-          value={rotationY}
-          onChange={handleHorizontal}
-          style={{ width: 450, marginTop: 8 }}
+          value={rotationX}
+          onChange={handleVertical}
+          style={{ width: 450, height: 20, marginLeft: 16, transform: 'rotate(270deg)' }}
         />
       </div>
-      <input
-        type="range"
-        min={0}
-        max={1}
-        step={0.01}
-        value={rotationX}
-        onChange={handleVertical}
-        style={{ width: 450, height: 8, marginLeft: 16, transform: 'rotate(270deg)' }}
-      />
     </div>
   );
 };

@@ -41,7 +41,7 @@ const Visualization: React.FC<VisualizationProps> = ({ factors }) => {
               fontSize: 'small',
               lineHeight: 'normal',
               minWidth: 60,
-              width: 200, // Fixed width for pill
+              width: 220, // Fixed width for pill
               textAlign: 'center',
               boxShadow: '0 1px 6px #0002',
               border: '2px solid #fff',
