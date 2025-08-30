@@ -759,7 +759,10 @@ Based on your assessment results, focus on areas with lower scores to improve yo
             bottom: 0,
             background: 'white', 
             padding: '24px 16px', 
-            marginTop: '24px'
+            marginTop: '24px',
+            width: '105%',
+            marginLeft: '-10px',
+            paddingTop: '10px'
           }}>
             <div style={{
               display: 'flex',
