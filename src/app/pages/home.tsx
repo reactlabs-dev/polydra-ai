@@ -158,7 +158,6 @@ export function Home(props: HomeProps) {
         </div>
       </div>
       <Calculator />
-      <StakkoWidget />
       <Footer />
     </div>
   );
