@@ -95,7 +95,7 @@ export default function StakkoWidget() {
         window.StakkoWidget('init', {
           stackId: "c99ae3fe-f7b7-469c-a71f-235bc0a064b2",
           deploymentUrl: "https://stakko-c99ae3fe-f7b7-469c-a71f-235bc0a064b2-6a13a4x54.vercel.app",
-          primaryColor: "#ef4444",
+          primaryColor: "#204a2fff",
           backgroundColor: "white",
           textColor: "#374151",
           brandName: "Inference Stack AI Assistant",
