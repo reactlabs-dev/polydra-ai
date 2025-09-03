@@ -4,6 +4,7 @@ import Footer from '../components/footer/Footer';
 import MainMenu from '../components/MainMenu/MainMenu';
 import styles from './home.module.scss';
 import { Dialog } from 'primereact/dialog';
+import StakkoWidget from '../components/StakkoChat';
 
 type DialogContent = {
   heading: string;
@@ -157,6 +158,7 @@ export function Home(props: HomeProps) {
         </div>
       </div>
       <Calculator />
+      <StakkoWidget />
       <Footer />
     </div>
   );
