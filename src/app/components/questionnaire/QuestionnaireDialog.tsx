@@ -5,15 +5,8 @@ import { RadioButton } from 'primereact/radiobutton';
 import { ProgressBar } from 'primereact/progressbar';
 import { Card } from 'primereact/card';
 import { Badge } from 'primereact/badge';
-
-// Assessment result interface for comprehensive tracking
-interface AssessmentResult {
-  sectionName: string;
-  score: number;
-  maxScore: number;
-  answers: { questionId: string; questionText: string; selectedAnswer: string; pointsEarned: number; maxPoints: number }[];
-  completedAt: Date;
-}
+import { AssessmentResult, getAssessmentSummary, printAssessmentReport } from './assessmentPrint';
+import { useAssessmentContext } from '../../context/AssessmentContext';
 
 const SECTIONS = [
   'Governance & Accountability',
@@ -436,16 +429,15 @@ export interface QuestionnaireDialogProps {
   open: boolean;
   onClose: () => void;
   onScoreUpdate?: (sectionIndex: number, score: number) => void;
-  onAssessmentComplete?: (results: AssessmentResult[]) => void;
 }
 
-const QuestionnaireDialog: React.FC<QuestionnaireDialogProps> = ({ open, onClose, onScoreUpdate, onAssessmentComplete }) => {
+const QuestionnaireDialog: React.FC<QuestionnaireDialogProps> = ({ open, onClose, onScoreUpdate }) => {
   const [tab, setTab] = useState(0);
   const [answers, setAnswers] = useState<{[key: string]: number}>({});
   const [selectedAnswerTexts, setSelectedAnswerTexts] = useState<{[key: string]: string}>({});
   const [sectionScores, setSectionScores] = useState<number[]>(Array(6).fill(0));
   const [assessmentResults, setAssessmentResults] = useState<AssessmentResult[]>([]);
-  const [isAssessmentComplete, setIsAssessmentComplete] = useState(false);
+  const { setAssessmentResults: setGlobalAssessmentResults, isAssessmentComplete, setAssessmentComplete } = useAssessmentContext();
 
   const currentQuestions = QUESTION_SETS[SECTIONS[tab]] || [];
   const maxPossibleScore = currentQuestions.reduce((sum, q) => sum + q.points, 0);
@@ -453,6 +445,11 @@ const QuestionnaireDialog: React.FC<QuestionnaireDialogProps> = ({ open, onClose
     const answer = answers[q.id];
     return sum + (answer !== undefined ? answer : 0);
   }, 0);
+
+  const answeredCount = currentQuestions.filter(q => answers[q.id] !== undefined).length;
+  const completionPercent = currentQuestions.length
+    ? Math.round((answeredCount / currentQuestions.length) * 100)
+    : 0;
 
   const handleAnswerChange = (questionId: string, score: number, answerText: string) => {
     setAnswers(prev => ({ ...prev, [questionId]: score }));
@@ -490,6 +487,7 @@ const QuestionnaireDialog: React.FC<QuestionnaireDialogProps> = ({ open, onClose
     const updatedResults = [...assessmentResults];
     updatedResults[tab] = sectionResult;
     setAssessmentResults(updatedResults);
+    setGlobalAssessmentResults(updatedResults);
     
     // Update the parent component's score
     if (onScoreUpdate) {
@@ -498,10 +496,7 @@ const QuestionnaireDialog: React.FC<QuestionnaireDialogProps> = ({ open, onClose
     
     // Check if this is the last section
     if (tab === SECTIONS.length - 1) {
-      setIsAssessmentComplete(true);
-      if (onAssessmentComplete) {
-        onAssessmentComplete(updatedResults);
-      }
+      setAssessmentComplete(true);
     } else {
       // Move to next tab
       setTab(tab + 1);
@@ -527,27 +522,18 @@ const QuestionnaireDialog: React.FC<QuestionnaireDialogProps> = ({ open, onClose
       default: return '#6b7280';
     }
   };
-
   const generateReport = () => {
-    const totalScore = assessmentResults.reduce((sum, result) => sum + result.score, 0);
-    const maxTotalScore = assessmentResults.length * 25;
-    const overallPercentage = (totalScore / maxTotalScore) * 100;
-    
-    let maturityLevel = 'Developing';
-    if (overallPercentage >= 80) maturityLevel = 'Expert';
-    else if (overallPercentage >= 65) maturityLevel = 'Advanced';
-    else if (overallPercentage >= 45) maturityLevel = 'Intermediate';
-    else if (overallPercentage >= 25) maturityLevel = 'Basic';
-    
+    const { totalScore, maxTotalScore, overallPercentage, maturityLevel } = getAssessmentSummary(assessmentResults);
+
     const reportContent = `
 # PolydraIQ™ AI Governance Assessment Report
 
-Generated: ${new Date().toLocaleDateString('en-US', { 
-  year: 'numeric', 
-  month: 'long', 
-  day: 'numeric', 
-  hour: '2-digit', 
-  minute: '2-digit'
+Generated: ${new Date().toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
 })}
 
 ## Executive Summary
@@ -557,15 +543,23 @@ Generated: ${new Date().toLocaleDateString('en-US', {
 
 ## Section Breakdown
 
-${assessmentResults.map(result => `
+${assessmentResults
+  .map(
+    (result) => `
 ### ${result.sectionName}
 **Score:** ${result.score.toFixed(1)} / 25 (${((result.score / 25) * 100).toFixed(1)}%)
 
-${result.answers.map(answer => `
+${result.answers
+  .map(
+    (answer) => `
 **Q:** ${answer.questionText}
 **A:** ${answer.selectedAnswer} (${answer.pointsEarned}/${answer.maxPoints} pts)
-`).join('')}
-`).join('')}
+`,
+  )
+  .join('')}
+`,
+  )
+  .join('')}
 
 ## Recommendations
 
@@ -575,10 +569,10 @@ Based on your assessment results, focus on areas with lower scores to improve yo
 *This report was generated using PolydraIQ™ Assessment Platform*
 *For professional AI governance consulting: https://www.inference-stack.com/*
     `;
-    
+
     return reportContent;
   };
-  
+
   const downloadReport = () => {
     const reportContent = generateReport();
     const blob = new Blob([reportContent], { type: 'text/markdown' });
@@ -591,52 +585,36 @@ Based on your assessment results, focus on areas with lower scores to improve yo
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
   };
-  
-  const printReport = () => {
-    const reportContent = generateReport();
-    const printWindow = window.open('', '_blank');
-    if (printWindow) {
-      printWindow.document.write(`
-        <html>
-          <head>
-            <title>PolydraIQ Assessment Report</title>
-            <style>
-              body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
-              h1 { color: #3b82f6; border-bottom: 2px solid #3b82f6; padding-bottom: 10px; }
-              h2 { color: #1f2937; margin-top: 30px; }
-              h3 { color: #374151; margin-top: 25px; }
-              strong { color: #1f2937; }
-              @media print { body { margin: 0; padding: 15px; font-size: 12px; } }
-            </style>
-          </head>
-          <body>
-            <pre style="white-space: pre-wrap; font-family: inherit;">${reportContent.replace(/\*/g, '').replace(/#/g, '')}</pre>
-          </body>
-        </html>
-      `);
-      printWindow.document.close();
-      printWindow.print();
+
+  const handlePrintReport = () => {
+    if (!assessmentResults.length) {
+      window.alert('Please complete the guided assessment before printing a report.');
+      return;
     }
+
+    printAssessmentReport(assessmentResults);
   };
 
   return (
-    <Dialog 
-      header="PolydraIQ™ Guided Assessment" 
-      visible={open} 
-      style={{ width: '90vw', maxWidth: '1200px' }} 
-      onHide={onClose} 
+    <Dialog
+      header="PolydraIQ™ Guided Assessment"
+      visible={open}
+      style={{ width: '90vw', maxWidth: '1200px' }}
+      onHide={onClose}
       blockScroll
       maximizable
     >
       <div className="guided-assessment-body" style={{ display: 'flex', height: '100%' }}>
         {/* Tab Navigation */}
-        <div style={{ 
-          width: '280px', 
-          borderRight: '1px solid #e5e7eb', 
-          padding: '20px 16px',
-          overflowY: 'auto',
-          backgroundColor: '#f7f5f1'
-        }}>
+        <div
+          style={{
+            width: '280px',
+            borderRight: '1px solid #e5e7eb',
+            padding: '20px 16px',
+            overflowY: 'auto',
+            backgroundColor: '#f7f5f1',
+          }}
+        >
           <h4 style={{ marginTop: 0 }}>Assessment Facets</h4>
           {SECTIONS.map((section, idx) => (
             <div
@@ -648,18 +626,33 @@ Based on your assessment results, focus on areas with lower scores to improve yo
                 border: tab === idx ? '2px solid #3b82f6' : '1px solid #e5e7eb',
                 borderRadius: '8px',
                 cursor: 'pointer',
-                position: 'relative'
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '8px',
               }}
               onClick={() => setTab(idx)}
             >
-              <div style={{ fontWeight: tab === idx ? 700 : 500, fontSize: '14px' }}>
+              <div
+                style={{
+                  fontWeight: tab === idx ? 700 : 500,
+                  fontSize: '14px',
+                  color: '#111827',
+                  flex: 1,
+                  minWidth: 0,
+                  wordBreak: 'break-word',
+                }}
+              >
                 {section}
               </div>
               {sectionScores[idx] > 0 && (
-                <Badge 
-                  value={sectionScores[idx].toFixed(1)} 
-                  severity="success" 
-                  style={{ position: 'absolute', top: '8px', right: '8px' }}
+                <Badge
+                  value={sectionScores[idx].toFixed(1)}
+                  severity="success"
+                  style={{
+                    marginLeft: '8px',
+                    flexShrink: 0,
+                  }}
                 />
               )}
             </div>
@@ -670,15 +663,20 @@ Based on your assessment results, focus on areas with lower scores to improve yo
         <div style={{ flex: 1, padding: '0 24px 0 24px', overflowY: 'auto', paddingRight: '32px' }}>
           <div style={{ marginBottom: '20px' }}>
             <h3 style={{ margin: '0 0 8px 0', color: '#1f2937' }}>{SECTIONS[tab]}</h3>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px' }}>
-              <ProgressBar 
-                value={maxPossibleScore ? Math.round((currentScore / maxPossibleScore) * 100) : 0} 
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '4px' }}>
+              <ProgressBar
+                value={completionPercent}
                 style={{ flex: 1 }}
                 color="#3b82f6"
               />
               <span style={{ fontWeight: 600, color: '#374151' }}>
-                {currentScore.toFixed(1)} / {maxPossibleScore} points
+                {answeredCount} / {currentQuestions.length || 0} answered
               </span>
+            </div>
+            <div style={{ fontSize: '12px', color: '#6b7280', marginBottom: '12px' }}>
+              Section progress reflects how many questions you&apos;ve answered. Your answers currently sum to
+              {' '}
+              {currentScore.toFixed(1)} / {maxPossibleScore} points.
             </div>
             <p style={{ color: '#6b7280', fontSize: '14px', margin: 0 }}>
               Answer questions to assess this facet's maturity. Higher complexity questions contribute more points.
@@ -688,162 +686,90 @@ Based on your assessment results, focus on areas with lower scores to improve yo
           {/* Questions */}
           <div style={{ marginBottom: '24px' }}>
             {currentQuestions.map((question, idx) => (
-              <Card 
-                key={question.id} 
-                style={{ 
+              <Card
+                key={question.id}
+                style={{
                   marginBottom: '20px',
                   border: `1px solid ${getCategoryColor(question.category)}20`,
-                  borderLeft: `4px solid ${getCategoryColor(question.category)}`
+                  borderLeft: `4px solid ${getCategoryColor(question.category)}`,
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                  <div style={{ 
-                    background: getCategoryColor(question.category) + '20',
-                    padding: '4px 8px',
-                    borderRadius: '12px',
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    color: getCategoryColor(question.category),
-                    minWidth: 'fit-content'
-                  }}>
-                    {getCategoryIcon(question.category)} {question.category.toUpperCase()} ({question.points}pt)
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    marginBottom: '8px',
+                  }}
+                >
+                  <div style={{ fontWeight: 600, color: '#111827' }}>
+                    {getCategoryIcon(question.category)} Question {idx + 1}
                   </div>
-                  <div style={{ flex: 1 }}>
-                    <h5 style={{ margin: '0 0 12px 0', color: '#1f2937' }}>
-                      {idx + 1}. {question.text}
-                    </h5>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                      {question.options.map((option, optIdx) => (
-                        <div 
-                          key={optIdx} 
-                          style={{ 
-                            display: 'flex', 
-                            alignItems: 'center', 
-                            padding: '8px 12px',
-                            background: answers[question.id] === option.score ? '#e5efff' : '#f9fafb',
-                            border: answers[question.id] === option.score ? '2px solid #3b82f6' : '1px solid #e5e7eb',
-                            borderRadius: '6px',
-                            cursor: 'pointer',
-                            transition: 'all 0.2s'
-                          }}
-                          onClick={() => handleAnswerChange(question.id, option.score, option.text)}
-                        >
-                          <RadioButton
-                            value={option.score}
-                            onChange={(e) => {
-                              const selectedOption = question.options.find(opt => opt.score === e.value);
-                              handleAnswerChange(question.id, e.value, selectedOption?.text || '');
-                            }}
-                            checked={answers[question.id] === option.score}
-                            style={{ marginRight: '8px' }}
-                          />
-                          <span style={{ flex: 1, color: '#374151' }}>{option.text}</span>
-                          <Badge 
-                            value={`${option.score}pt`} 
-                            severity={option.score === 0 ? 'danger' : option.score < question.points * 0.5 ? 'warning' : 'success'}
-                            style={{ fontSize: '10px' }}
-                          />
-                        </div>
-                      ))}
+                  <span style={{ fontSize: '12px', color: '#6b7280' }}>
+                    Weight: {question.points} pts · Level: {question.category}
+                  </span>
+                </div>
+
+                <div style={{ marginBottom: '8px', color: '#111827' }}>{question.text}</div>
+
+                <div>
+                  {question.options.map((option, optionIdx) => (
+                    <div
+                      key={optionIdx}
+                      style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}
+                    >
+                      <RadioButton
+                        inputId={`${question.id}_${optionIdx}`}
+                        name={question.id}
+                        value={option.score}
+                        onChange={() => handleAnswerChange(question.id, option.score, option.text)}
+                        checked={answers[question.id] === option.score}
+                      />
+                      <label htmlFor={`${question.id}_${optionIdx}`} style={{ fontSize: '14px', color: '#374151' }}>
+                        {option.text}
+                      </label>
                     </div>
-                  </div>
+                  ))}
                 </div>
               </Card>
             ))}
           </div>
 
-          {/* Calculate Score Button and Report Generation */}
-          <div style={{
-            position: 'sticky',
-            bottom: 0,
-            background: 'white', 
-            padding: '24px 16px 16px 16px',
-            marginTop: '24px',
-            width: '100%',
-            marginLeft: 0,
-            paddingTop: '10px',
-            boxSizing: 'border-box'
-          }}>
-            <div style={{
+          {/* Actions */}
+          <div
+            style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              paddingBottom: '24px',
-              marginBottom: isAssessmentComplete ? '32px' : '0',
-              marginLeft: '-24px',
-              marginRight: '-24px',
-              paddingLeft: '24px',
-              paddingRight: '24px',
-              backgroundColor: 'white',
-              position: 'relative',
-              zIndex: 1
-            }}>
-              <div style={{ color: '#6b7280', fontSize: '16px', fontWeight: '500' }}>
-                Calculated Score: <strong>{calculateSectionScore().toFixed(2)} / 25</strong>
-              </div>
-              <div style={{ display: 'flex', gap: '16px' }}>
-                {tab > 0 && (
-                  <Button 
-                    label="Previous" 
-                    icon="pi pi-arrow-left" 
-                    outlined
-                    onClick={() => setTab(tab - 1)}
-                  />
-                )}
-                <Button 
-                  label={tab === SECTIONS.length - 1 ? "Complete Assessment" : "Calculate & Next"} 
-                  icon="pi pi-check"
-                  onClick={handleCalculateScore}
-                  disabled={currentQuestions.some(q => answers[q.id] === undefined)}
-                />
-              </div>
+              marginTop: '8px',
+            }}
+          >
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <Button
+                label="Download Report (Markdown)"
+                icon="pi pi-download"
+                size="small"
+                outlined
+                onClick={downloadReport}
+                disabled={!isAssessmentComplete}
+              />
+              <Button
+                label="Print Report"
+                icon="pi pi-print"
+                size="small"
+                onClick={handlePrintReport}
+                disabled={!isAssessmentComplete}
+                severity={isAssessmentComplete ? 'success' : 'secondary'}
+                outlined={!isAssessmentComplete}
+              />
             </div>
-            
-            {/* Report Generation Section - Only show when assessment is complete */}
-            {isAssessmentComplete && (
-              <div style={{
-                borderTop: '2px solid #e5e7eb',
-                paddingTop: '24px',
-                background: '#f8fafc',
-                margin: '-24px -24px 0 -24px',
-                padding: '32px 24px 24px 24px',
-                borderRadius: '0 0 6px 6px'
-              }}>
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
-                  alignItems: 'center',
-                  marginBottom: '16px'
-                }}>
-                  <div>
-                    <div style={{ color: '#059669', fontWeight: '600', fontSize: '18px' }}>
-                      ✅ Assessment Complete!
-                    </div>
-                    <div style={{ color: '#6b7280', fontSize: '16px', fontWeight: '500' }}>
-                      Total Score: {assessmentResults.reduce((sum, result) => sum + result.score, 0).toFixed(1)} / 150
-                    </div>
-                  </div>
-                  <div style={{ display: 'flex', gap: '8px' }}>
-                    <Button 
-                      label="Download Report" 
-                      icon="pi pi-download" 
-                      onClick={downloadReport}
-                      className="p-button-success"
-                      size="small"
-                      tooltip="Download detailed markdown report"
-                    />
-                    <Button 
-                      label="Print Report" 
-                      icon="pi pi-print" 
-                      onClick={printReport}
-                      outlined
-                      size="small"
-                      tooltip="Print assessment results"
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
+
+            <Button
+              label={tab === SECTIONS.length - 1 ? 'Finish Section' : 'Save & Next Section'}
+              icon="pi pi-arrow-right"
+              size="small"
+              onClick={handleCalculateScore}
+            />
           </div>
         </div>
       </div>
