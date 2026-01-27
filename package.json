@@ -66,13 +66,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/reactlabs-dev/polydraiq.git"
+    "url": "git+https://github.com/reactlabs-dev/polydra-ai.git"
   },
   "homepage": "https://polydraiq.com",
   "bugs": {
-    "url": "https://github.com/reactlabs-dev/polydraiq/issues"
+    "url": "https://github.com/reactlabs-dev/polydra-ai/issues"
   },
-  "license": "UNLICENSED",
+  "license": "AGPL-3.0-only",
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"

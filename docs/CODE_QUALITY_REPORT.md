@@ -259,6 +259,4 @@ The investment in code quality positions both the project and Inference-Stack.co
 
 ---
 
-*Generated on: ${new Date().toLocaleDateString()}*  
-*Version: 1.0.0*  
-*Author: Matt Vegas - Inference Stack*
+*Code quality report for the open-source repository version of PolydraIQ.*
