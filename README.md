@@ -17,6 +17,16 @@
 
 </div>
 
+<div align="center">
+
+<img src="./public/screenshot_calc.png" alt="PolydraIQ Interactive Calculator" width="900" />
+
+<br/>
+
+<img src="./public/screenshot_assessment.png" alt="PolydraIQ Guided Assessment" width="900" />
+
+</div>
+
 ## 📋 Table of Contents
 
 - [Overview](#-overview)

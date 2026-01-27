@@ -672,7 +672,7 @@ Based on your assessment results, focus on areas with lower scores to improve yo
             <h3 style={{ margin: '0 0 8px 0', color: '#1f2937' }}>{SECTIONS[tab]}</h3>
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px' }}>
               <ProgressBar 
-                value={(currentScore / maxPossibleScore) * 100} 
+                value={maxPossibleScore ? Math.round((currentScore / maxPossibleScore) * 100) : 0} 
                 style={{ flex: 1 }}
                 color="#3b82f6"
               />
