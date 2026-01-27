@@ -12,11 +12,12 @@
     flex-direction: column;
     width: 95vw;
     height: auto;
-    background-color: #F8F6F2;
-    border: solid 8px #987D56;
+    background-color: var(--color-surface);
+    border: solid 1px var(--color-border-subtle);
     border-radius: 6px;
-    margin: 26vh auto 0 auto;
-    padding: 20px;
+    margin: 25vh auto 0 auto;
+    padding: 18px 20px 24px 20px;
     z-index: 2;
-    color: #5D7560;
+    color: var(--color-text-main);
+    box-shadow: var(--shadow-soft);
 }

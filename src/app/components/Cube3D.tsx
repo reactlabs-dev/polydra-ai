@@ -1,20 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
 import { Factor } from './factorSlider/FactorSlider';
+import { CUBE_FACE_COLORS } from '@/constants';
 
 interface Cube3DProps {
   factors: Factor[];
 }
 
 const GRID_SIZE = 5;
-const faceColors = [
-  '#4C628D', // Muted blue (readable, brand-aligned)
-  '#6EA8D9', // Lighter blue (accent)
-  '#34B3A0', // Teal/aqua (fresh, vibrant)
-  '#F2F5FA', // Light gray (excellent for dark text)
-  '#E6B646', // Gold accent (contrasts with dark text)
-  '#9AB8C8'  // Light slate blue (soft, modern)
-];
 
 const FACE_LABELS = [
   'Governance & Accountability',
@@ -145,7 +138,13 @@ const Cube3D: React.FC<Cube3DProps> = ({ factors }) => {
     for (let f = 0; f < 6; f++) {
       const factor = limitedFactors[f];
       const score = Math.max(0, Math.min(25, Math.round(factor.score)));
-      materials.push(new THREE.MeshBasicMaterial({ map: createRubikFace(faceColors[f], score, FACE_LABELS[f]), transparent: true }));
+      const faceColor = CUBE_FACE_COLORS[f];
+      materials.push(
+        new THREE.MeshBasicMaterial({
+          map: createRubikFace(faceColor, score, FACE_LABELS[f]),
+          transparent: true,
+        })
+      );
     }
     const geometry = new THREE.BoxGeometry(2, 2, 2);
     const cube = new THREE.Mesh(geometry, materials);

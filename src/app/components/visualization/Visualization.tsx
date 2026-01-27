@@ -1,22 +1,13 @@
 import React from 'react';
 import Cube3D from '../Cube3D';
 import { Factor } from '../factorSlider/FactorSlider';
+import { CUBE_FACE_COLORS } from '@/constants';
 
 
 /* eslint-disable-next-line */
 export interface VisualizationProps {
   factors: Factor[];
 }
-
-// const faceColors = ['#F7E84F', '#4F8EF7', '#F74F8E', '#4FF78E', '#F78E4F', '#8E4FF7'];
-const faceColors = [
-  '#4C628D', // Muted blue (readable, brand-aligned)
-  '#6EA8D9', // Lighter blue (accent)
-  '#34B3A0', // Teal/aqua (fresh, vibrant)
-  '#F2F5FA', // Light gray (excellent for dark text)
-  '#E6B646', // Gold accent (contrasts with dark text)
-  '#9AB8C8'  // Light slate blue (soft, modern)
-];
 
 const Visualization: React.FC<VisualizationProps> = ({ factors }) => {
   // Limit to 6 factors for the cube
@@ -33,8 +24,8 @@ const Visualization: React.FC<VisualizationProps> = ({ factors }) => {
           <div
             key={idx}
             style={{
-              background: faceColors[idx],
-              color: '#222',
+              background: CUBE_FACE_COLORS[idx],
+              color: '#ffffff',
               borderRadius: 20,
               padding: '6px 12px',
               fontWeight: 700,

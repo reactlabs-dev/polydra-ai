@@ -604,7 +604,7 @@ Based on your assessment results, focus on areas with lower scores to improve yo
             <title>PolydraIQ Assessment Report</title>
             <style>
               body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
-              h1 { color: #0ea5e9; border-bottom: 2px solid #0ea5e9; padding-bottom: 10px; }
+              h1 { color: #3b82f6; border-bottom: 2px solid #3b82f6; padding-bottom: 10px; }
               h2 { color: #1f2937; margin-top: 30px; }
               h3 { color: #374151; margin-top: 25px; }
               strong { color: #1f2937; }
@@ -625,28 +625,29 @@ Based on your assessment results, focus on areas with lower scores to improve yo
     <Dialog 
       header="PolydraIQ™ Guided Assessment" 
       visible={open} 
-      style={{ width: '90vw', maxWidth: '1200px', height: '85vh' }} 
+      style={{ width: '90vw', maxWidth: '1200px' }} 
       onHide={onClose} 
       blockScroll
       maximizable
     >
-      <div style={{ display: 'flex', height: '100%' }}>
+      <div className="guided-assessment-body" style={{ display: 'flex', height: '100%' }}>
         {/* Tab Navigation */}
         <div style={{ 
           width: '280px', 
-          borderRight: '1px solid #eee', 
-          paddingRight: '16px',
-          overflowY: 'auto'
+          borderRight: '1px solid #e5e7eb', 
+          padding: '20px 16px',
+          overflowY: 'auto',
+          backgroundColor: '#f7f5f1'
         }}>
           <h4 style={{ marginTop: 0 }}>Assessment Facets</h4>
           {SECTIONS.map((section, idx) => (
             <div
               key={section}
               style={{
-                padding: '12px',
+                padding: '10px 12px',
                 margin: '4px 0',
-                background: tab === idx ? '#f0f9ff' : 'transparent',
-                border: tab === idx ? '2px solid #0ea5e9' : '1px solid #e5e7eb',
+                background: tab === idx ? '#e5efff' : 'transparent',
+                border: tab === idx ? '2px solid #3b82f6' : '1px solid #e5e7eb',
                 borderRadius: '8px',
                 cursor: 'pointer',
                 position: 'relative'
@@ -675,7 +676,7 @@ Based on your assessment results, focus on areas with lower scores to improve yo
               <ProgressBar 
                 value={(currentScore / maxPossibleScore) * 100} 
                 style={{ flex: 1 }}
-                color="#0ea5e9"
+                color="#3b82f6"
               />
               <span style={{ fontWeight: 600, color: '#374151' }}>
                 {currentScore.toFixed(1)} / {maxPossibleScore} points
@@ -721,8 +722,8 @@ Based on your assessment results, focus on areas with lower scores to improve yo
                             display: 'flex', 
                             alignItems: 'center', 
                             padding: '8px 12px',
-                            background: answers[question.id] === option.score ? '#f0f9ff' : '#f9fafb',
-                            border: answers[question.id] === option.score ? '2px solid #0ea5e9' : '1px solid #e5e7eb',
+                            background: answers[question.id] === option.score ? '#e5efff' : '#f9fafb',
+                            border: answers[question.id] === option.score ? '2px solid #3b82f6' : '1px solid #e5e7eb',
                             borderRadius: '6px',
                             cursor: 'pointer',
                             transition: 'all 0.2s'
@@ -758,11 +759,12 @@ Based on your assessment results, focus on areas with lower scores to improve yo
             position: 'sticky',
             bottom: 0,
             background: 'white', 
-            padding: '24px 16px', 
+            padding: '24px 16px 16px 16px',
             marginTop: '24px',
-            width: '105%',
-            marginLeft: '-10px',
-            paddingTop: '10px'
+            width: '100%',
+            marginLeft: 0,
+            paddingTop: '10px',
+            boxSizing: 'border-box'
           }}>
             <div style={{
               display: 'flex',

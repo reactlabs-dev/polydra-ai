@@ -16,7 +16,7 @@
     h1 {
         font-size: 40px;
         font-weight: 600;
-        color: #FFFFFF;
+        color: #ffffff;
     }
 }
 
@@ -42,10 +42,10 @@
     justify-content: flex-start;
     align-items: center;
     align-content: center;
-    background-color: #1F271B;
+    background-color: var(--color-navy);
     position: absolute;
     top: 0;
-    border-bottom: solid 10px #987D56;
+    border-bottom: solid 10px var(--color-gold);
 
     .container {
         margin-top: 80px;
@@ -61,7 +61,7 @@
     }
 
     h1, h2, p {
-        color: #F4F2EC;
+        color: #f9fafb;
     }
 }
 

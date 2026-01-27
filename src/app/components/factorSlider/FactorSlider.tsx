@@ -63,9 +63,9 @@ const FactorSlider: React.FC<FactorSliderProps> = ({ factor, onChange, compact }
 
   return (
     <div className="factor-slider" style={compact ? {
-      background: '#fff',
+      background: 'var(--color-surface)',
       borderRadius: 12,
-      boxShadow: '0 1px 6px #0001',
+      boxShadow: '0 8px 18px rgba(15, 23, 42, 0.08)',
       minWidth: 140,
       maxWidth: 160,
       flex: 1,
@@ -131,22 +131,22 @@ const FactorSlider: React.FC<FactorSliderProps> = ({ factor, onChange, compact }
         >
           <div
             style={{
-              background: '#fff',
+              background: 'var(--color-surface)',
               borderRadius: 12,
               padding: 32,
               maxWidth: 640,
               width: '90vw',
-              boxShadow: '0 4px 32px #0003',
+              boxShadow: '0 16px 40px rgba(15, 23, 42, 0.18)',
               position: 'relative',
             }}
           >
             <h2 style={{ marginTop: 0 }}>{desc.title}</h2>
-            <div style={{ margin: '18px 0', whiteSpace: 'pre-line', color: '#666' }}>
+            <div style={{ margin: '18px 0', whiteSpace: 'pre-line', color: 'var(--color-text-muted)' }}>
               <strong>Overview:</strong>
               <br />
               {desc.content}
             </div>
-            <div style={{ margin: '18px 0', whiteSpace: 'pre-line', color: '#666' }}>
+            <div style={{ margin: '18px 0', whiteSpace: 'pre-line', color: 'var(--color-text-muted)' }}>
               <strong>Why it matters:</strong>
               <br />
               {desc.content}

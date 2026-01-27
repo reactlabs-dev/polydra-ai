@@ -30,7 +30,7 @@ export default function StakkoWidget() {
           welcomeMessage: "Hi! How can I help you today?",
           placeholder: "Type your message...",
           position: "bottom-right",
-          autoOpen: true,
+          autoOpen: false,
           showBranding: true,
           logoUrl: null
         });

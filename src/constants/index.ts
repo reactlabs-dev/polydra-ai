@@ -175,12 +175,12 @@ export const QUESTION_CATEGORIES = {
  * Color palette for data visualization
  */
 export const VISUALIZATION_COLORS = {
-  primary: '#4C628D',
-  secondary: '#6EA8D9',
-  accent: '#34B3A0',
-  neutral: '#F2F5FA',
-  highlight: '#E6B646',
-  muted: '#9AB8C8',
+  primary: '#1F2937',   // Navy
+  secondary: '#3B82F6', // SaaS blue
+  accent: '#14B8A6',    // Teal
+  neutral: '#F7F5F1',   // Warm light background
+  highlight: '#C6923A', // Muted gold/bronze
+  muted: '#4B5563',     // Warm slate
   text: {
     primary: '#1f2937',
     secondary: '#6b7280',
@@ -188,8 +188,8 @@ export const VISUALIZATION_COLORS = {
   },
   background: {
     primary: '#ffffff',
-    secondary: '#f9fafb',
-    accent: '#f0f9ff',
+    secondary: '#f7f5f1',
+    accent: '#eff6ff',
   },
   border: {
     light: '#e5e7eb',
@@ -202,12 +202,12 @@ export const VISUALIZATION_COLORS = {
  * Face colors for 3D cube visualization
  */
 export const CUBE_FACE_COLORS = [
-  '#4C628D', // Governance - Muted blue
-  '#6EA8D9', // Ethics - Lighter blue
-  '#34B3A0', // Data - Teal/aqua
-  '#F2F5FA', // Model - Light gray
-  '#E6B646', // Operations - Gold accent
-  '#9AB8C8', // Stakeholder - Light slate blue
+  '#1F2937', // Governance - Navy
+  '#3B82F6', // Ethics - SaaS blue
+  '#14B8A6', // Data - Teal
+  '#4B5563', // Model - Warm slate
+  '#6D4C71', // Operations - Muted plum
+  '#C6923A', // Stakeholder - Muted gold/bronze
 ] as const;
 
 /**
