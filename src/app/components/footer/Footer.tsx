@@ -7,7 +7,7 @@ export interface FooterProps {}
 export function Footer(props: FooterProps) {
   return (
     <div className={styles['footer']}>
-      Copyright &copy; 2025, AIDAQInsights™. All rights reserved.
+      Copyright &copy; 2025, Inference-Stack.com. All rights reserved.
     </div>
   );
 }

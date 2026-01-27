@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![AIDAQInsights™](./public/inference_stack_logo2.png)
+![Inference-Stack.com](./public/inference_stack_logo2.png)
 
 **Enterprise-grade AI governance assessment and visualization platform**
 
@@ -357,9 +357,9 @@ This means:
 
 For commercial licensing inquiries, please contact [matt.vegas@inference-stack.com](mailto:matt.vegas@inference-stack.com).
 
-## 🏢 About AIDAQInsights™
+## 🏢 About Inference-Stack.com
 
-**AIDAQInsights™** addresses the critical gap in enterprise AI trust through independent, multidimensional accreditation. As organizations rapidly deploy AI systems, regulators, customers, and partners increasingly demand comprehensive visibility, accountability, and assurance across every aspect of AI operations.
+**Inference-Stack.com** addresses the critical gap in enterprise AI trust through independent, multidimensional accreditation. As organizations rapidly deploy AI systems, regulators, customers, and partners increasingly demand comprehensive visibility, accountability, and assurance across every aspect of AI operations.
 
 ### **Enterprise Services**
 
@@ -679,9 +679,9 @@ This means:
 
 For commercial licensing inquiries, please contact [matt.vegas@inference-stack.com](mailto:matt.vegas@inference-stack.com).
 
-## 🏢 About AIDAQInsights™
+## 🏢 About Inference-Stack.com
 
-**AIDAQInsights™** addresses the critical gap in enterprise AI trust through independent, multidimensional accreditation. As organizations rapidly deploy AI systems, regulators, customers, and partners increasingly demand comprehensive visibility, accountability, and assurance across every aspect of AI operations.
+**Inference-Stack.com** addresses the critical gap in enterprise AI trust through independent, multidimensional accreditation. As organizations rapidly deploy AI systems, regulators, customers, and partners increasingly demand comprehensive visibility, accountability, and assurance across every aspect of AI operations.
 
 ### **Enterprise Services**
 

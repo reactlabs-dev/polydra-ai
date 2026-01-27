@@ -14,13 +14,13 @@ import { Factor, MaturityLevel, FactorCategory } from '../types';
 export const APP_CONFIG = {
   name: 'Polydra AI Assessment Platform',
   version: '1.0.0',
-  description: 'AIDAQInsights™ Assessment Platform - Multidimensional AI assessment and visualization',
+  description: 'Inference-Stack.com Assessment Platform - Multidimensional AI assessment and visualization',
   author: 'Matt Vegas',
   company: 'Inference Stack',
   website: 'https://www.inference-stack.com',
   repository: 'https://github.com/reactlabs-dev/polydraiq',
   license: 'AGPL-3.0',
-  trademark: 'AIDAQInsights™',
+  trademark: 'Inference-Stack.com',
 } as const;
 
 /**
@@ -297,7 +297,7 @@ export const A11Y_LABELS = {
  * Legal and compliance information
  */
 export const LEGAL = {
-  copyright: `Copyright © ${new Date().getFullYear()}, AIDAQInsights™. All rights reserved.`,
+  copyright: `Copyright © ${new Date().getFullYear()}, Inference-Stack.com. All rights reserved.`,
   disclaimer: 'This assessment provides guidance only and does not constitute professional advice.',
   privacy: 'Data is processed locally and in compliance with applicable privacy regulations.',
   terms: 'Use of this platform is subject to our Terms of Service and Privacy Policy.',

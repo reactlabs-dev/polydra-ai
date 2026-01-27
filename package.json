@@ -1,7 +1,7 @@
 {
   "name": "polydraiq",
   "version": "1.0.0",
-  "description": "PolydraIQ - AIDAQInsights™ Assessment Platform - Multidimensional AI assessment and visualization",
+  "description": "PolydraIQ - Inference-Stack.com Assessment Platform - Multidimensional AI assessment and visualization",
   "private": true,
   "type": "module",
   "scripts": {

@@ -25,13 +25,13 @@ const dialogContents: DialogContent[] = [
 {
   heading: 'About',
   paragraphs: [
-    "AIDAQInsights™ addresses the growing need for structured AI governance assessment in organizations deploying AI systems. As companies seek to understand and improve their AI practices, there's a critical gap in accessible, comprehensive evaluation tools that can provide both immediate insights and actionable guidance.",
+    "Inference-Stack.com addresses the growing need for structured AI governance assessment in organizations deploying AI systems. As companies seek to understand and improve their AI practices, there's a critical gap in accessible, comprehensive evaluation tools that can provide both immediate insights and actionable guidance.",
     "Most existing AI governance approaches rely on static checklists or generic frameworks that don't capture the nuanced, interconnected nature of AI implementation challenges. These approaches often treat AI readiness as a simple checklist rather than the multidimensional capability assessment it requires.",
     "PolydraIQ™ demonstrates a modern approach to AI assessment by providing an interactive platform that evaluates AI maturity across six essential dimensions: Governance & Accountability, Ethics & Responsible AI, Data Integrity & Security, Model Quality & Technical Rigor, Operationalization & Lifecycle Management, and Stakeholder & Societal Impact. The platform features 30 expert-designed questions that provide comprehensive coverage of key AI governance areas.",
     "The platform delivers immediate assessment results with detailed scoring, progress tracking, and comprehensive reporting capabilities. Organizations can explore their AI readiness through interactive sliders, complete guided assessments, and generate detailed reports for stakeholder communication and improvement planning.",
     "Our mission: Make AI governance assessment accessible and actionable for organizations beginning their AI journey. PolydraIQ™ transforms complex AI governance concepts into clear, measurable evaluation criteria that help organizations understand their current state and plan their AI governance roadmap."
   ],
-  link: { url: 'https://www.aidaqinsights.com/', text: 'Visit AIDAQInsights' }
+  link: { url: 'https://www.inference-stack.com/', text: 'Visit Inference-Stack.com' }
 },
 {
   heading: 'Credits',
@@ -48,7 +48,7 @@ const dialogContents: DialogContent[] = [
 {
   heading: 'Legal',
   paragraphs: [
-    "<strong>USE DISCLAIMER:</strong> PolydraIQ and the AIDAQInsights™ assessment platform are provided <u>'AS IS'</u> for <u>informational and preliminary evaluation purposes only</u>. This tool generates automated assessments based on user input and should <strong><u>NOT be considered as professional advice, formal audit results, or certification</u></strong>. <u>Users assume all risks</u> associated with decisions made based on assessment outputs.",
+    "<strong>USE DISCLAIMER:</strong> PolydraIQ™ and the assessment platform by Inference-Stack.com are provided <u>'AS IS'</u> for <u>informational and preliminary evaluation purposes only</u>. This tool generates automated assessments based on user input and should <strong><u>NOT be considered as professional advice, formal audit results, or certification</u></strong>. <u>Users assume all risks</u> associated with decisions made based on assessment outputs.",
     "<strong>LIABILITY LIMITATIONS:</strong> Inference Stack, Matt Vegas, and associated parties <u>disclaim all warranties</u>, express or implied, including merchantability, fitness for purpose, and accuracy of results. We <strong><u>shall not be liable for any direct, indirect, consequential, or incidental damages</u></strong> arising from use of this platform, including but not limited to business losses, data corruption, security breaches, or regulatory non-compliance.",
     "<strong>INTELLECTUAL PROPERTY RIGHTS:</strong> All proprietary algorithms, assessment methodologies, visualization engines, and the <u>PolydraIQ™ assessment platform technology remain the exclusive intellectual property</u> of Matt Vegas and Inference Stack. Users are granted <u>limited, non-transferable rights to USE the platform for legitimate business evaluation purposes only</u>. <strong><u>Reverse engineering, copying, reproducing, modifying, distributing, reselling, or creating derivative works is strictly prohibited</u></strong>.",
     "<strong>PROFESSIONAL SERVICES DISTINCTION:</strong> This automated assessment tool provides <u>high-level insights only</u>. For production deployments, regulatory compliance, or mission-critical AI systems, users should <u>engage qualified professionals for comprehensive code-level audits</u>, security penetration testing, and formal compliance validation. <strong>Inference Stack offers such professional services through direct consultation engagements.</strong>",

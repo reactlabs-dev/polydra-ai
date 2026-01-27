@@ -53,7 +53,7 @@ function Calculator(props: CalculatorProps) {
 //   "A 2023 IBM survey found 84% of consumers expect companies to be accountable for their AI systems.",
 //   "AI-related regulatory fines are projected to exceed $10B by 2030 if compliance lags (Gartner, 2024).",
 //   "The EU AI Act is the world’s first comprehensive regulation for enterprise AI (adopted 2024).",
-//   "Accreditation frameworks like AIDAQInsights™ offer an external trust signal similar to SOC 2 for AI.",
+//   "Accreditation frameworks from providers like Inference-Stack.com offer an external trust signal similar to SOC 2 for AI.",
 //   "42% of major organizations have paused high-impact AI projects over lack of external validation (S&P Global Market Intelligence, 2025).",
 //   "Third-party AI assurance can reduce enterprise procurement cycles by up to 40% (Forrester, 2023).",
 //   "Most AI model errors stem from incomplete data governance, not just poor algorithms (MIT, 2023).",

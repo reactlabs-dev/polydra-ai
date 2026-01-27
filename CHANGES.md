@@ -59,7 +59,7 @@ Successfully completed comprehensive rebrand from "Polydra.ai" to "PolydraIQ" an
 
 #### **Dialog Content Updates**
 - ✅ **Introduction**: Original jumbotron content about Polydra™ framework
-- ✅ **About**: Detailed AIDAQInsights™ company information  
+- ✅ **About**: Detailed Inference-Stack.com company information  
 - ✅ **Credits**: Updated to reference "PolydraIQ" instead of "Polydra.ai"
 - ✅ **Legal**: Updated disclaimers to reference "PolydraIQ"
 
