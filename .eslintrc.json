@@ -35,7 +35,8 @@
     },
     {
       "files": [
-        "src/app/components/factorSlider/FactorSlider.tsx"
+        "src/app/components/factorSlider/FactorSlider.tsx",
+        "src/app/context/AssessmentContext.tsx"
       ],
       "rules": {
         "react-refresh/only-export-components": "off"
