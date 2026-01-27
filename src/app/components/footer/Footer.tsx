@@ -1,10 +1,6 @@
-import React from 'react';
 import styles from './Footer.module.scss';
 
-/* eslint-disable-next-line */
-export interface FooterProps {}
-
-export function Footer(props: FooterProps) {
+export function Footer() {
   return (
     <div className={styles['footer']}>
       Copyright &copy; 2025, Inference-Stack.com. All rights reserved.

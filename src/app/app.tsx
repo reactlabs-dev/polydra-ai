@@ -16,10 +16,8 @@
  * along with this program. If not, see https://www.gnu.org/licenses/.
  */
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/home';
-import React from 'react';
 
 export function App() {
   return (

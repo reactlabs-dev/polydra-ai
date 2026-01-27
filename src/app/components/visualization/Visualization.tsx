@@ -4,7 +4,6 @@ import { Factor } from '../factorSlider/FactorSlider';
 import { CUBE_FACE_COLORS } from '@/constants';
 
 
-/* eslint-disable-next-line */
 export interface VisualizationProps {
   factors: Factor[];
 }

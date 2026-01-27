@@ -2,7 +2,6 @@ import { InputNumber } from 'primereact/inputnumber';
 import { Factor } from '../factorSlider/FactorSlider';
 import React from 'react';
 
-/* eslint-disable-next-line */
 export interface WeightInputProps {
   factor: Factor;
   onChange: (value: number) => void;

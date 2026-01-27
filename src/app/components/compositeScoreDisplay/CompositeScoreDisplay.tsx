@@ -11,7 +11,6 @@ interface AssessmentResult {
   completedAt: Date;
 }
 
-/* eslint-disable-next-line */
 export interface CompositeScoreDisplayProps {
   score: number;
   onQuestionnaireScoreUpdate?: (sectionIndex: number, score: number) => void;

@@ -6,7 +6,7 @@
  * @license AGPL-3.0
  */
 
-import { Factor, MaturityLevel, AssessmentResults, AppError } from '../types';
+import { Factor, MaturityLevel, AppError } from '../types';
 import { MATURITY_LEVELS, SCORING } from '../constants';
 
 /**

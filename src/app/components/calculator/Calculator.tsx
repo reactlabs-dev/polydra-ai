@@ -5,7 +5,6 @@ import CompositeScoreDisplay from '../compositeScoreDisplay/CompositeScoreDispla
 import Visualization from '../visualization/Visualization';
 import FactorSlider from '../factorSlider/FactorSlider';
 
-/* eslint-disable-next-line */
 export interface CalculatorProps {
   'data-testid'?: string;
 }

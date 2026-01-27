@@ -7,7 +7,7 @@
  */
 
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { Factor, AssessmentResults, MaturityLevel, AppError } from '../types';
+import { Factor, AssessmentResults, AppError } from '../types';
 import { DEFAULT_FACTORS, STORAGE_KEYS } from '../constants';
 import { AssessmentMath, StorageUtils, ErrorUtils } from '../utils';
 
