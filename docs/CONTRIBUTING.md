@@ -77,6 +77,13 @@ See [TESTING.md](./TESTING.md) and [CODE_QUALITY_REPORT.md](./CODE_QUALITY_REPOR
 - Update relevant docs in `docs/` when you change behavior or public APIs.
 - Keep commit and PR descriptions aligned with user-visible changes.
 
+## 🔐 Secrets & Environment Variables
+
+- Never commit **API keys, access tokens, passwords, or private keys**.
+- Keep all environment-specific values in local `.env*` files, which are already ignored via `.gitignore`.
+- If you accidentally push a secret, **revoke/rotate it immediately** and note this in your PR or issue.
+- Use placeholder values (e.g., `https://api.example.com`, `YOUR_API_KEY_HERE`) in examples and docs.
+
 ## 🤝 Code of Conduct
 
 By participating, you agree to uphold the project’s [Code of Conduct](./CODE_OF_CONDUCT.md).
