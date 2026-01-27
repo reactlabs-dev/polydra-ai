@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styles from './StatisticsBanner.module.scss';
 import { Button } from 'primereact/button';
 
-/* eslint-disable-next-line */
 export interface StatisticsBannerProps {
   facts: string[];
 }

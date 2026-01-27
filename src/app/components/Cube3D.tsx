@@ -101,11 +101,9 @@ const Cube3D: React.FC<Cube3DProps> = ({ factors }) => {
         
         // ELITE TEXT ORIENTATION: Determine if text should be flipped based on rotation
         const currentRotX = rotationX * Math.PI * 2;
-        const currentRotY = rotationY * Math.PI * 2;
         
         // Normalize rotations to 0-2π range
         const normalizedRotX = ((currentRotX % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
-        const normalizedRotY = ((currentRotY % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
         
         // Flip text if cube is rotated in a way that would make text upside down
         const shouldFlip = (normalizedRotX > Math.PI/2 && normalizedRotX < 3*Math.PI/2);

@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 import { RadioButton } from 'primereact/radiobutton';
 import { ProgressBar } from 'primereact/progressbar';
 import { Card } from 'primereact/card';
 import { Badge } from 'primereact/badge';
-import { Divider } from 'primereact/divider';
-import { Tooltip } from 'primereact/tooltip';
 
 // Assessment result interface for comprehensive tracking
 interface AssessmentResult {

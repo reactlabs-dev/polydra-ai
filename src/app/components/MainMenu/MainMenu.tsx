@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './MainMenu.module.scss';
 import { Button } from 'primereact/button';
 
-/* eslint-disable-next-line */
 export interface MainMenuProps {
   onMenuClick: (index: number) => void;
 }

@@ -58,10 +58,7 @@ const dialogContents: DialogContent[] = [
 },
 ];
 
-/* eslint-disable-next-line */
-export interface HomeProps {}
-
-export function Home(props: HomeProps) {
+export function Home() {
 
   const [visible, setVisible] = useState<boolean>(false);
   const [currentDialog, setCurrentDialog] = useState<DialogContent | null>(null);
