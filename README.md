@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Inference-Stack.com](./public/inference_stack_logo2.png)
+<img src="./public/inferencestack_logo2W.png" alt="Inference-Stack.com" width="260" />
 
 **Enterprise-grade AI governance assessment and visualization platform**
 
