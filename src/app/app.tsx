@@ -18,15 +18,18 @@
 
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/home';
+import { AssessmentProvider } from './context/AssessmentContext';
 
 export function App() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        Component={Home}
-      />
-    </Routes>
+    <AssessmentProvider>
+      <Routes>
+        <Route
+          path="/"
+          Component={Home}
+        />
+      </Routes>
+    </AssessmentProvider>
   );
 }
 

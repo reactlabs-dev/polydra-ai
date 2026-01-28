@@ -10,8 +10,7 @@ export interface CalculatorProps {
 }
 
 function Calculator(props: CalculatorProps) {
-
-  const [factors, setFactors] = useState<Factor[]>(initialFactors || []); // Add fallback
+  const [factors, setFactors] = useState<Factor[]>(() => (initialFactors || []).map(f => ({ ...f })));
 
   const handleScoreChange = (index: number, value: number) => {
     const newFactors = [...factors];
@@ -25,6 +24,10 @@ function Calculator(props: CalculatorProps) {
       newFactors[sectionIndex].score = score;
       setFactors(newFactors);
     }
+  };
+
+  const handleAssessmentReset = () => {
+    setFactors((initialFactors || []).map(f => ({ ...f })));
   };
 
   const calculateCompositeScore = () => {
@@ -73,6 +76,7 @@ function Calculator(props: CalculatorProps) {
           <CompositeScoreDisplay 
             score={calculateCompositeScore()} 
             onQuestionnaireScoreUpdate={handleQuestionnaireScoreUpdate}
+            onAssessmentReset={handleAssessmentReset}
           />
           
           {/* Maturity Level Indicator */}
