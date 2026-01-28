@@ -750,64 +750,65 @@ Based on your assessment results, focus on areas with lower scores to improve yo
           </div>
 
           {/* Actions */}
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginTop: '8px',
-            }}
-          >
-            <div style={{ display: 'flex', gap: '8px' }}>
-              <Button
-                label="Download Report (Markdown)"
-                icon="pi pi-download"
-                size="small"
-                outlined
-                onClick={downloadReport}
-                disabled={!isAssessmentComplete || !assessmentResults.length}
-              />
-              <Button
-                label="Print Report"
-                icon="pi pi-print"
-                size="small"
-                onClick={handlePrintReport}
-                disabled={!isAssessmentComplete || !assessmentResults.length}
-                severity={isAssessmentComplete ? 'success' : 'secondary'}
-                outlined={!isAssessmentComplete}
-              />
-            </div>
+          <div style={{ marginTop: '8px' }}>
             <div
               style={{
                 fontSize: '12px',
                 color: '#4b5563',
                 textAlign: 'center',
-                flex: 1,
+                marginBottom: '8px',
               }}
             >
               Current section score (normalized):{' '}
               {normalizedSectionScore.toFixed(1)} / 25
             </div>
-            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-              <Button
-                label="Previous Section"
-                icon="pi pi-arrow-left"
-                size="small"
-                outlined
-                disabled={tab === 0}
-                onClick={() => {
-                  if (tab > 0) {
-                    setTab(tab - 1);
-                  }
-                }}
-              />
-              <Button
-                label={tab === SECTIONS.length - 1 ? 'Finish Section' : 'Save & Next Section'}
-                icon="pi pi-arrow-right"
-                size="small"
-                onClick={handleCalculateScore}
-                disabled={currentQuestions.some(q => answers[q.id] === undefined)}
-              />
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <Button
+                  label="Download Report (Markdown)"
+                  icon="pi pi-download"
+                  size="small"
+                  outlined
+                  onClick={downloadReport}
+                  disabled={!isAssessmentComplete || !assessmentResults.length}
+                />
+                <Button
+                  label="Print Report"
+                  icon="pi pi-print"
+                  size="small"
+                  onClick={handlePrintReport}
+                  disabled={!isAssessmentComplete || !assessmentResults.length}
+                  severity={isAssessmentComplete ? 'success' : 'secondary'}
+                  outlined={!isAssessmentComplete}
+                />
+              </div>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                <Button
+                  label="Previous Section"
+                  icon="pi pi-arrow-left"
+                  size="small"
+                  outlined
+                  disabled={tab === 0}
+                  onClick={() => {
+                    if (tab > 0) {
+                      setTab(tab - 1);
+                    }
+                  }}
+                />
+                <Button
+                  label={tab === SECTIONS.length - 1 ? 'Finish Section' : 'Save & Next Section'}
+                  icon="pi pi-arrow-right"
+                  size="small"
+                  onClick={handleCalculateScore}
+                  disabled={currentQuestions.some(q => answers[q.id] === undefined)}
+                />
+              </div>
             </div>
           </div>
         </div>
