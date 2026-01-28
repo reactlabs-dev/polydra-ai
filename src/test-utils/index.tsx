@@ -5,6 +5,7 @@
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import React, { ReactElement } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { AssessmentProvider } from '../app/context/AssessmentContext';
 
 // Mock localStorage
 export const mockLocalStorage = (() => {
@@ -70,10 +71,13 @@ export const customRender = (
   { withRouter = false, ...options }: CustomRenderOptions = {}
 ): RenderResult => {
   const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
+    let content = children;
+
     if (withRouter) {
-      return <BrowserRouter>{children}</BrowserRouter>;
+      content = <BrowserRouter>{content}</BrowserRouter>;
     }
-    return <>{children}</>;
+
+    return <AssessmentProvider>{content}</AssessmentProvider>;
   };
 
   return render(ui, { wrapper: AllTheProviders, ...options });
