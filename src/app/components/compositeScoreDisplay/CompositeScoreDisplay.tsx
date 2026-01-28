@@ -7,6 +7,11 @@ import { useAssessmentContext } from '../../context/AssessmentContext';
 export interface CompositeScoreDisplayProps {
   score: number;
   onQuestionnaireScoreUpdate?: (sectionIndex: number, score: number) => void;
+  /**
+   * Optional callback invoked after the guided assessment has been reset
+   * and the assessment dialog has been closed. Use this to perform any
+   * additional cleanup or UI updates when starting a new assessment.
+   */
   onAssessmentReset?: () => void;
   'data-testid'?: string;
 }

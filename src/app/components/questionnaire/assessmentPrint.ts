@@ -32,7 +32,7 @@ export const getAssessmentSummary = (assessmentResults: AssessmentResult[]): Ass
   }
 
   const totalScore = assessmentResults.reduce((sum, result) => sum + result.score, 0);
-  const maxTotalScore = assessmentResults.length * 25;
+  const maxTotalScore = assessmentResults.reduce((sum, result) => sum + result.maxScore, 0);
   const overallPercentage = maxTotalScore > 0 ? (totalScore / maxTotalScore) * 100 : 0;
 
   let maturityLevel = 'Developing';
@@ -62,7 +62,7 @@ export const printAssessmentReport = (assessmentResults: AssessmentResult[]): vo
 
   const sectionsHtml = assessmentResults
     .map((result) => {
-      const sectionPercentage = (result.score / 25) * 100;
+      const sectionPercentage = result.maxScore > 0 ? (result.score / result.maxScore) * 100 : 0;
       return `
           <section class="section-block">
             <h2>${result.sectionName}</h2>

@@ -21,10 +21,6 @@ export const AssessmentProvider: React.FC<{ children: ReactNode }> = ({ children
   const [assessmentResults, setAssessmentResultsState] = useState<AssessmentResult[]>([]);
   const [isAssessmentComplete, setAssessmentComplete] = useState(false);
 
-  const setAssessmentResults = (results: AssessmentResult[]) => {
-    setAssessmentResultsState(results);
-  };
-
   const resetAssessment = () => {
     setAssessmentResultsState([]);
     setAssessmentComplete(false);
@@ -42,7 +38,7 @@ export const AssessmentProvider: React.FC<{ children: ReactNode }> = ({ children
     <AssessmentContext.Provider
       value={{
         assessmentResults,
-        setAssessmentResults,
+        setAssessmentResults: setAssessmentResultsState,
         isAssessmentComplete,
         setAssessmentComplete,
         resetAssessment,

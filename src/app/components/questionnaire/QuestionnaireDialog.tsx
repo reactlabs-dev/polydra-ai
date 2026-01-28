@@ -436,8 +436,7 @@ const QuestionnaireDialog: React.FC<QuestionnaireDialogProps> = ({ open, onClose
   const [answers, setAnswers] = useState<{[key: string]: number}>({});
   const [selectedAnswerTexts, setSelectedAnswerTexts] = useState<{[key: string]: string}>({});
   const [sectionScores, setSectionScores] = useState<number[]>(Array(6).fill(0));
-  const [assessmentResults, setAssessmentResults] = useState<AssessmentResult[]>([]);
-  const { setAssessmentResults: setGlobalAssessmentResults, isAssessmentComplete, setAssessmentComplete } = useAssessmentContext();
+  const { assessmentResults, setAssessmentResults, isAssessmentComplete, setAssessmentComplete } = useAssessmentContext();
 
   const currentQuestions = QUESTION_SETS[SECTIONS[tab]] || [];
   const maxPossibleScore = currentQuestions.reduce((sum, q) => sum + q.points, 0);
@@ -449,6 +448,10 @@ const QuestionnaireDialog: React.FC<QuestionnaireDialogProps> = ({ open, onClose
   const answeredCount = currentQuestions.filter(q => answers[q.id] !== undefined).length;
   const completionPercent = currentQuestions.length
     ? Math.round((answeredCount / currentQuestions.length) * 100)
+    : 0;
+
+  const normalizedSectionScore = maxPossibleScore
+    ? (currentScore / maxPossibleScore) * 25
     : 0;
 
   const handleAnswerChange = (questionId: string, score: number, answerText: string) => {
@@ -487,7 +490,6 @@ const QuestionnaireDialog: React.FC<QuestionnaireDialogProps> = ({ open, onClose
     const updatedResults = [...assessmentResults];
     updatedResults[tab] = sectionResult;
     setAssessmentResults(updatedResults);
-    setGlobalAssessmentResults(updatedResults);
     
     // Update the parent component's score
     if (onScoreUpdate) {
@@ -716,7 +718,19 @@ Based on your assessment results, focus on areas with lower scores to improve yo
                   {question.options.map((option, optionIdx) => (
                     <div
                       key={optionIdx}
-                      style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        marginBottom: '6px',
+                        padding: '6px 8px',
+                        borderRadius: '8px',
+                        border: answers[question.id] === option.score ? '1px solid #3b82f6' : '1px solid transparent',
+                        backgroundColor: answers[question.id] === option.score ? '#eff6ff' : 'transparent',
+                        cursor: 'pointer',
+                        transition: 'background-color 0.15s ease, border-color 0.15s ease',
+                      }}
+                      onClick={() => handleAnswerChange(question.id, option.score, option.text)}
                     >
                       <RadioButton
                         inputId={`${question.id}_${optionIdx}`}
@@ -751,25 +765,50 @@ Based on your assessment results, focus on areas with lower scores to improve yo
                 size="small"
                 outlined
                 onClick={downloadReport}
-                disabled={!isAssessmentComplete}
+                disabled={!isAssessmentComplete || !assessmentResults.length}
               />
               <Button
                 label="Print Report"
                 icon="pi pi-print"
                 size="small"
                 onClick={handlePrintReport}
-                disabled={!isAssessmentComplete}
+                disabled={!isAssessmentComplete || !assessmentResults.length}
                 severity={isAssessmentComplete ? 'success' : 'secondary'}
                 outlined={!isAssessmentComplete}
               />
             </div>
-
-            <Button
-              label={tab === SECTIONS.length - 1 ? 'Finish Section' : 'Save & Next Section'}
-              icon="pi pi-arrow-right"
-              size="small"
-              onClick={handleCalculateScore}
-            />
+            <div
+              style={{
+                fontSize: '12px',
+                color: '#4b5563',
+                textAlign: 'center',
+                flex: 1,
+              }}
+            >
+              Current section score (normalized):{' '}
+              {normalizedSectionScore.toFixed(1)} / 25
+            </div>
+            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+              <Button
+                label="Previous Section"
+                icon="pi pi-arrow-left"
+                size="small"
+                outlined
+                disabled={tab === 0}
+                onClick={() => {
+                  if (tab > 0) {
+                    setTab(tab - 1);
+                  }
+                }}
+              />
+              <Button
+                label={tab === SECTIONS.length - 1 ? 'Finish Section' : 'Save & Next Section'}
+                icon="pi pi-arrow-right"
+                size="small"
+                onClick={handleCalculateScore}
+                disabled={currentQuestions.some(q => answers[q.id] === undefined)}
+              />
+            </div>
           </div>
         </div>
       </div>
