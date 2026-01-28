@@ -24,6 +24,7 @@ import 'primereact/resources/primereact.min.css'
 import 'primeflex/primeflex.css'
 import 'primereact/resources/themes/lara-light-teal/theme.css'
 import 'primeicons/primeicons.css'
+import { Analytics } from "@vercel/analytics/next"
 
 import App from './app/app'
 
@@ -40,6 +41,7 @@ root.render(
       }}
     >
       <App />
+      <Analytics />
     </BrowserRouter>
   </StrictMode>
 )
