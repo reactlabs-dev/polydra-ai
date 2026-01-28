@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Calculator from '../components/calculator/Calculator';
 import Footer from '../components/footer/Footer';
 import MainMenu from '../components/MainMenu/MainMenu';
@@ -62,6 +62,22 @@ export function Home() {
 
   const [visible, setVisible] = useState<boolean>(false);
   const [currentDialog, setCurrentDialog] = useState<DialogContent | null>(null);
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== 'undefined') {
+        setIsDesktop(window.innerWidth >= 1024);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const showDialog = (index: number) => {
     setCurrentDialog(dialogContents[index]);
@@ -73,6 +89,20 @@ export function Home() {
     setCurrentDialog(null);
   };
 
+  if (!isDesktop) {
+    return (
+      <div className={styles['container']} style={{ alignItems: 'center', justifyContent: 'center', minHeight: '100vh', textAlign: 'center' }}>
+        <div>
+          <div className={styles['logo']}><h1>PolydraIQ.com</h1></div>
+          <p style={{ maxWidth: 520, margin: '24px auto 0', color: '#e5e7eb', fontSize: '15px' }}>
+            This interactive demo is currently optimized for desktop-sized viewports.
+            For the best experience, please open PolydraIQ on a laptop or desktop
+            display with a wider screen.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles['container']}>
