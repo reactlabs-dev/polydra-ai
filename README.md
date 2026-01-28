@@ -9,8 +9,8 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-95%25-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18.2-61dafb?style=flat-square&logo=react)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-5.0-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
-[![Test Coverage](https://img.shields.io/badge/Coverage-High-green?style=flat-square)](./coverage)
-[![WCAG 2.1](https://img.shields.io/badge/Accessibility-WCAG%202.1%20AA-green?style=flat-square)](https://www.w3.org/WAI/WCAG21/quickref/)
+[![Tests](https://img.shields.io/badge/Tests-Passing-green?style=flat-square)](./coverage)
+[![Accessibility](https://img.shields.io/badge/Accessibility-Practices-blue?style=flat-square)](https://www.w3.org/WAI/WCAG21/quickref/)
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL%203.0-blue?style=flat-square)](https://www.gnu.org/licenses/agpl-3.0)
 
 [🚀 **Live Demo**](https://polydraiq.com) • [📖 **Documentation**](./docs) • [🤝 **Contributing**](./docs/CONTRIBUTING.md)
@@ -44,17 +44,21 @@
 
 **PolydraIQ** is a comprehensive AI governance assessment platform that provides organizations with multidimensional evaluation of their AI systems across six critical factors: governance, ethics, data integrity, model quality, operations, and societal impact.
 
-Built with enterprise-grade standards, this platform demonstrates modern web development best practices including TypeScript, comprehensive testing, accessibility compliance, and robust error handling.
+Built with modern web development practices (TypeScript, component-based architecture, automated tests, and error handling), PolydraIQ is intended as a **starting point** for structured AI governance conversations inside organizations.
+
+> **Important scope note**
+>
+> PolydraIQ is an assessment and visualization tool, not an audit or certification by itself. It helps teams systematically capture and discuss their own claims and practices across the six dimensions above. Determining how *deep* and reliable those claims are still requires experienced engineers, risk, and compliance professionals to review real systems, data flows, and processes in depth. A questionnaire—no matter how detailed—cannot, on its own, fully validate an organization’s AI governance posture.
 
 ### 🎯 **Why PolydraIQ?**
 
-- **🏢 Enterprise-Ready**: Production-grade code quality and architecture
-- **📊 Comprehensive Assessment**: Six-dimensional AI maturity evaluation
+- **🏢 Enterprise-Oriented**: Modern TypeScript/React architecture with linting and automated tests
+- **📊 Comprehensive Assessment**: Six-dimensional AI maturity questionnaire and calculator
 - **🎨 Interactive Visualization**: 3D cube and real-time score visualization
-- **♿ Accessible**: WCAG 2.1 AA compliance with screen reader support
-- **🧪 Well-Tested**: 90%+ test coverage with comprehensive test suites
-- **📱 Responsive**: Works seamlessly across all device sizes
-- **🔒 Secure**: Input validation, XSS prevention, and secure data handling
+- **♿ Accessibility-Focused**: Uses accessible React components and keyboard-friendly flows, informed by WCAG 2.1 guidance
+- **🧪 Tested**: Jest + React Testing Library suite with coverage reporting
+- **📱 Responsive Layout**: Built with flexbox and PrimeFlex to work well across common desktop and mobile screen sizes
+- **🔒 Frontend-Safe Defaults**: Controlled inputs and React’s escape-by-default rendering help reduce common client-side risks
 
 ## ✨ Key Features
 
@@ -74,7 +78,7 @@ Built with enterprise-grade standards, this platform demonstrates modern web dev
 - **Error Boundaries**: Graceful error handling throughout the application
 - **Data Persistence**: Local storage with graceful degradation
 - **Performance Optimization**: Memoized calculations and efficient re-rendering
-- **Accessibility**: Full keyboard navigation and screen reader support
+- **Accessibility**: Uses semantic React components and keyboard-focusable controls; deeper WCAG alignment is an ongoing effort
 
 ### 🎨 **User Experience**
 - **Modern UI/UX**: Clean, professional interface with PrimeReact components
@@ -216,11 +220,11 @@ src/
 
 ### **Code Quality Standards**
 
-- **TypeScript**: Strict mode enabled with comprehensive type coverage
-- **ESLint**: Enforced code style and best practices
-- **Testing**: 90%+ coverage requirement
-- **Documentation**: JSDoc comments for all public APIs
-- **Accessibility**: WCAG 2.1 AA compliance testing
+- **TypeScript**: Strict mode enabled across the app for safer refactoring
+- **ESLint**: Enforced code style and best practices via npm scripts
+- **Testing**: Jest + React Testing Library with coverage reporting
+- **Documentation**: Inline comments and README/docs for key flows (JSDoc is recommended for public APIs)
+- **Accessibility**: Uses accessible UI primitives and aims to improve WCAG 2.1 alignment over time (no formal certification implied)
 
 ### **Path Aliases**
 
@@ -278,9 +282,11 @@ const data = StorageUtils.getItem('key', defaultValue);
 
 ### **Testing Philosophy**
 
+For teams adopting or extending PolydraIQ in production, a healthy testing strategy typically includes:
+
 - **Unit Tests**: Individual component and utility function testing
 - **Integration Tests**: Component interaction and data flow testing
-- **Accessibility Tests**: Screen reader and keyboard navigation testing
+- **Accessibility Considerations**: Keyboard navigation and basic assistive-technology flows where feasible
 - **Error Handling Tests**: Failure scenario and recovery testing
 
 ### **Running Tests**
@@ -299,12 +305,14 @@ npm run coverage
 npm test Calculator.test.tsx
 ```
 
-### **Test Coverage Goals**
+### **Test Coverage Status & Goals**
 
-- **Components**: 90%+ line coverage
-- **Utilities**: 95%+ line coverage
-- **Error Scenarios**: 100% coverage
-- **Accessibility**: Manual and automated testing
+- **Current status**: The open-source starter currently has a focused but partial Jest suite (overall coverage is well below 90% across the entire codebase and is being expanded over time).
+- **Longer-term goals** (for teams running this in production) might include:
+   - Components: 80–90%+ line coverage
+   - Utilities: 90%+ line coverage
+   - Critical error paths: Near-100% coverage
+   - Accessibility: Regular manual checks and, where possible, automated tooling
 
 ## 🚀 Deployment
 
@@ -370,6 +378,8 @@ For commercial licensing inquiries, please contact [matt.vegas@inference-stack.c
 ## 🏢 About Inference-Stack.com
 
 **Inference-Stack.com** addresses the critical gap in enterprise AI trust through independent, multidimensional accreditation. As organizations rapidly deploy AI systems, regulators, customers, and partners increasingly demand comprehensive visibility, accountability, and assurance across every aspect of AI operations.
+
+PolydraIQ is one mechanism in that broader toolkit: it helps quantify and qualify the *breadth* of an organization’s stated AI practices across many dimensions. It does **not** replace the need for deeper, hands-on technical and organizational analysis (for example, engineers and auditors reviewing infrastructure, model pipelines, codebases, and live products). Instead, it is designed to give teams a shared starting point and vocabulary so the wider open-source and enterprise communities can have more grounded conversations about AI governance inside their own organizations.
 
 ### **Enterprise Services**
 

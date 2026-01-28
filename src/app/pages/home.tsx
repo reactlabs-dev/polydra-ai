@@ -16,9 +16,9 @@ const dialogContents: DialogContent[] = [
 {
   heading: 'Introduction',
   paragraphs: [
-    "PolydraIQ™ is an interactive AI governance assessment platform designed to help organizations evaluate their AI maturity across six critical dimensions. Built with modern web technologies including React, TypeScript, and Three.js, it provides real-time visualization and scoring of AI governance practices through an intuitive interface.",
-    "The platform features 30 carefully crafted assessment questions covering governance, ethics, data integrity, model quality, operations, and stakeholder impact. Each question is categorized by complexity level (Basic, Intermediate, Advanced, Expert) and contributes weighted points to your overall maturity score.",
-    "With PolydraIQ™, you can explore different assessment scenarios, track your progress across dimensions, and generate detailed reports of your AI governance readiness. The interactive demo below demonstrates our assessment framework, allowing you to see how different factors contribute to overall AI maturity."
+    "PolydraIQ™ is an interactive AI governance assessment and visualization tool designed to help organizations explore their AI maturity across six critical dimensions. Built with modern web technologies including React, TypeScript, and Three.js, it provides real-time visualization and scoring through an intuitive interface.",
+    "The platform offers guided questionnaires and factor-based sliders covering governance, ethics, data integrity, model quality, operations, and stakeholder impact. Responses are structured into weighted scores so teams can see how their stated practices map across these dimensions.",
+    "Importantly, PolydraIQ™ is a starting point for conversation, not a formal audit or certification. The results reflect what you enter into the tool; determining how deep and reliable those claims are still requires experienced engineers and risk/compliance professionals to review real systems, data flows, and products in detail."
   ],
 },
 {
@@ -26,9 +26,9 @@ const dialogContents: DialogContent[] = [
   paragraphs: [
     "Inference-Stack.com addresses the growing need for structured AI governance assessment in organizations deploying AI systems. As companies seek to understand and improve their AI practices, there's a critical gap in accessible, comprehensive evaluation tools that can provide both immediate insights and actionable guidance.",
     "Most existing AI governance approaches rely on static checklists or generic frameworks that don't capture the nuanced, interconnected nature of AI implementation challenges. These approaches often treat AI readiness as a simple checklist rather than the multidimensional capability assessment it requires.",
-    "PolydraIQ™ demonstrates a modern approach to AI assessment by providing an interactive platform that evaluates AI maturity across six essential dimensions: Governance & Accountability, Ethics & Responsible AI, Data Integrity & Security, Model Quality & Technical Rigor, Operationalization & Lifecycle Management, and Stakeholder & Societal Impact. The platform features 30 expert-designed questions that provide comprehensive coverage of key AI governance areas.",
-    "The platform delivers immediate assessment results with detailed scoring, progress tracking, and comprehensive reporting capabilities. Organizations can explore their AI readiness through interactive sliders, complete guided assessments, and generate detailed reports for stakeholder communication and improvement planning.",
-    "Our mission: Make AI governance assessment accessible and actionable for organizations beginning their AI journey. PolydraIQ™ transforms complex AI governance concepts into clear, measurable evaluation criteria that help organizations understand their current state and plan their AI governance roadmap."
+    "PolydraIQ™ demonstrates a modern approach to AI assessment by providing an interactive platform that evaluates AI maturity across six essential dimensions: Governance & Accountability, Ethics & Responsible AI, Data Integrity & Security, Model Quality & Technical Rigor, Operationalization & Lifecycle Management, and Stakeholder & Societal Impact. It uses a rich set of expert-designed questions to capture the breadth of an organization's stated practices across these areas.",
+    "The platform delivers immediate assessment results with detailed scoring, progress tracking, and comprehensive reporting capabilities. Organizations can explore their AI readiness through interactive sliders, complete guided assessments, and generate reports that help communicate where they are strong and where deeper technical analysis is warranted.",
+    "Our mission: Make AI governance assessment accessible and actionable for organizations beginning their AI journey. PolydraIQ™ provides a shared starting point and vocabulary for conversations about AI governance, while leaving room—and creating a pathway—for the deeper, hands-on technical and organizational review that real assurance requires."
   ],
   link: { url: 'https://www.inference-stack.com/', text: 'Visit Inference-Stack.com' }
 },
@@ -36,8 +36,8 @@ const dialogContents: DialogContent[] = [
   heading: 'Credits',
   paragraphs: [
     "PolydraIQ represents the application of modern web development practices to AI governance assessment. The system architecture leverages React 18's component-based design with Three.js WebGL rendering for real-time visualization of multidimensional assessment data in an interactive 3D interface.",
-    "The assessment engine implements a weighted scoring methodology with validation and error handling, ensuring reliable evaluation across the six governance dimensions. The platform uses TypeScript for type safety, comprehensive Jest testing for reliability, and modular SCSS styling for maintainable design.",
-    "Development followed enterprise-grade software practices including path aliasing for clean imports, comprehensive error boundaries, accessibility features with ARIA support, and responsive design principles. The codebase demonstrates modern React patterns: functional components with hooks, memoized calculations, and efficient state management.",
+    "The assessment engine implements a weighted scoring methodology with validation and error handling, ensuring reliable evaluation across the six governance dimensions. The platform uses TypeScript for type safety, Jest-based tests for reliability, and modular SCSS styling for maintainable design.",
+    "Development followed professional software practices including path aliasing for clean imports, error boundaries, accessibility-conscious design, and responsive layout principles. The codebase demonstrates modern React patterns: functional components with hooks, memoized calculations, and efficient state management.",
     "The visualization system processes assessment data through Three.js transformations, mapping discrete survey responses onto an interactive 3D cube representation. This enables both detailed component-level analysis and holistic system visualization—providing an engaging interface for exploring AI governance maturity across multiple dimensions.",
     "Architected and developed by Matt Vegas, Principal Consultant at Inference Stack, this platform demonstrates how thoughtful software design can make complex assessment frameworks accessible and engaging. The result showcases professional development practices applied to create an intuitive, reliable tool for AI governance evaluation."
   ],
@@ -108,13 +108,8 @@ export function Home() {
                 paddingTop: '16px', 
                 borderTop: '1px solid #e5e7eb',
                 textAlign: 'center' 
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginBottom: '8px' }}>
-                  <img 
-                    src="/inference_stack_logo2.png" 
-                    alt="Inference Stack" 
-                    style={{ height: '28px', width: 'auto', objectFit: 'contain' }} 
-                  />
+               }}>
+                <div style={{ marginBottom: '8px' }}>
                   <a 
                     href="https://www.inference-stack.com/" 
                     target="_blank" 

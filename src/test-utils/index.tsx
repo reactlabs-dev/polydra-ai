@@ -74,7 +74,16 @@ export const customRender = (
     let content = children;
 
     if (withRouter) {
-      content = <BrowserRouter>{content}</BrowserRouter>;
+      content = (
+        <BrowserRouter
+          future={{
+            v7_startTransition: true,
+            v7_relativeSplatPath: true,
+          }}
+        >
+          {content}
+        </BrowserRouter>
+      );
     }
 
     return <AssessmentProvider>{content}</AssessmentProvider>;
